@@ -20,326 +20,63 @@
             --border-color: #e2e8f0;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif; }
 
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        body { background-color: var(--bg-light); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
 
-        /* --- HEADER --- */
-        header {
-            width: 100%;
-            background-color: var(--card-bg);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            width: 100%;
-            max-width: 1000px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo {
-            font-size: 26px;
-            font-weight: 900;
-            color: var(--navy-dark);
-            text-decoration: none;
-            letter-spacing: 0.5px;
-        }
-
-        .rating-display {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-muted);
-            background: #f1f5f9;
-            padding: 6px 12px;
-            border-radius: 20px;
-        }
-
+        header { width: 100%; background-color: var(--card-bg); box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 15px 20px; display: flex; justify-content: center; position: sticky; top: 0; z-index: 100; }
+        .header-content { width: 100%; max-width: 1000px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-section { display: flex; align-items: center; gap: 20px; }
+        .logo { font-size: 26px; font-weight: 900; color: var(--navy-dark); text-decoration: none; }
+        .rating-display { display: flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 600; color: var(--text-muted); background: #f1f5f9; padding: 6px 12px; border-radius: 20px; }
         .star-icon { color: var(--warning); font-size: 16px; }
+        
+        .auth-section button { background-color: white; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .auth-section button:hover { background-color: #f1f5f9; }
 
-        .auth-section button {
-            background-color: white;
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
+        .main-wrapper { width: 100%; max-width: 1000px; padding: 30px 20px; flex-grow: 1; }
 
-        .auth-section button:hover {
-            background-color: #f1f5f9;
-        }
+        .questions-grid { display: grid; grid-template-columns: repeat(15, 1fr); gap: 6px; margin-bottom: 25px; background: var(--card-bg); padding: 15px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        @media (max-width: 768px) { .questions-grid { grid-template-columns: repeat(10, 1fr); } }
+        @media (max-width: 480px) { .questions-grid { grid-template-columns: repeat(6, 1fr); } }
 
-        /* --- MAIN WRAPPER --- */
-        .main-wrapper {
-            width: 100%;
-            max-width: 1000px;
-            padding: 30px 20px;
-            flex-grow: 1;
-        }
-
-        /* --- GRID NAVIGATION --- */
-        .questions-grid {
-            display: grid;
-            grid-template-columns: repeat(15, 1fr);
-            gap: 6px;
-            margin-bottom: 25px;
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        @media (max-width: 768px) {
-            .questions-grid { grid-template-columns: repeat(10, 1fr); }
-        }
-        @media (max-width: 480px) {
-            .questions-grid { grid-template-columns: repeat(6, 1fr); }
-        }
-
-        .grid-item {
-            background-color: #f1f5f9;
-            border: 1px solid transparent;
-            padding: 8px 0;
-            font-weight: 600;
-            font-size: 13px;
-            color: var(--text-muted);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-        }
-
+        .grid-item { background-color: #f1f5f9; border: 1px solid transparent; padding: 8px 0; font-weight: 600; font-size: 13px; color: var(--text-muted); border-radius: 6px; cursor: pointer; text-align: center; }
         .grid-item:hover { background-color: #e2e8f0; }
         .grid-item.answered { background-color: var(--navy-dark); color: white; }
-        .grid-item.current {
-            background-color: var(--accent-blue);
-            color: white;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
-        }
+        .grid-item.current { background-color: var(--accent-blue); color: white; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3); }
 
-        /* --- QUIZ CARD --- */
-        .quiz-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            padding: 30px;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 40px;
-        }
+        .quiz-card { background-color: var(--card-bg); border-radius: 16px; padding: 30px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        @media (max-width: 800px) { .quiz-card { grid-template-columns: 1fr; gap: 20px; } }
 
-        @media (max-width: 800px) {
-            .quiz-card { grid-template-columns: 1fr; gap: 20px; }
-        }
+        .visual-side { background-color: #f8fafc; border-radius: 12px; padding: 20px; display: flex; justify-content: center; align-items: center; border: 1px solid var(--border-color); min-height: 250px; }
+        .visual-side img { max-width: 100%; max-height: 300px; border-radius: 8px; object-fit: contain; }
+        
+        .question-text { font-size: 20px; font-weight: 700; color: var(--navy-dark); margin-bottom: 25px; }
+        .options-container { display: flex; flex-direction: column; gap: 12px; }
+        .option-button { background-color: var(--card-bg); border: 2px solid var(--border-color); border-radius: 10px; padding: 16px 20px; font-size: 16px; text-align: left; cursor: pointer; font-weight: 500; }
+        .option-button:hover { background-color: #f8fafc; border-color: #cbd5e1; }
+        .option-button.selected { background-color: #eff6ff; border-color: var(--accent-blue); color: var(--navy-bright); }
 
-        .visual-side {
-            background-color: #f8fafc;
-            border-radius: 12px;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid var(--border-color);
-            min-height: 250px;
-        }
-
-        .visual-side img {
-            max-width: 100%;
-            max-height: 300px;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .question-text {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--navy-dark);
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .option-button {
-            background-color: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            padding: 16px 20px;
-            font-size: 16px;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
-        .option-button:hover {
-            border-color: #cbd5e1;
-            background-color: #f8fafc;
-        }
-
-        .option-button.selected {
-            background-color: #eff6ff;
-            border-color: var(--accent-blue);
-            color: var(--navy-bright);
-        }
-
-        .action-bar {
-            margin-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-        }
-
+        .action-bar { margin-top: 30px; display: flex; justify-content: space-between; align-items: center; }
+        .btn { padding: 12px 24px; font-size: 15px; font-weight: 600; border-radius: 8px; cursor: pointer; border: none; }
         .btn-primary { background-color: var(--accent-blue); color: white; }
-        .btn-primary:hover { background-color: var(--accent-hover); }
         .btn-secondary { background-color: #e2e8f0; color: var(--text-main); }
-        .btn-secondary:hover { background-color: #cbd5e1; }
+        .timer { font-size: 18px; font-weight: 700; background: #f1f5f9; padding: 8px 16px; border-radius: 8px; color: var(--navy-dark); }
 
-        .timer {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--navy-dark);
-            background: #f1f5f9;
-            padding: 8px 16px;
-            border-radius: 8px;
-        }
-
-        /* --- SCREENS --- */
-        .screen-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            padding: 50px;
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .screen-card h2 { color: var(--navy-dark); margin-bottom: 20px; font-size: 28px; }
-        .screen-card p { color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; font-size: 16px; }
-
+        .screen-card { background-color: var(--card-bg); border-radius: 16px; padding: 50px; text-align: center; max-width: 700px; margin: 0 auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .screen-card h2 { color: var(--navy-dark); margin-bottom: 20px; }
+        .screen-card p { color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; }
         .hidden { display: none !important; }
 
-        /* --- MODAL (Google Login) --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(4px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-box {
-            background: white;
-            padding: 40px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .google-btn {
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            width: 100%;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .google-btn:hover { background: #f8fafc; }
-
-        /* --- RATING SYSTEM (Pabaigos ekrane) --- */
-        .rating-box {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            border-radius: 12px;
-            margin: 30px 0;
-        }
-
-        .stars-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-            flex-direction: row-reverse; /* For pure CSS hover logic */
-        }
-
-        .star-rate {
-            font-size: 35px;
-            color: #cbd5e1;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .stars-container .star-rate:hover,
-        .stars-container .star-rate:hover ~ .star-rate {
-            color: var(--warning);
-        }
-
-        .star-rate.active { color: var(--warning); }
-        .star-rate.active ~ .star-rate { color: var(--warning); }
-
+        /* Modal & Ratings */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-box { background: white; padding: 40px; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; }
+        .google-btn { background: white; border: 1px solid var(--border-color); padding: 12px; width: 100%; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; }
+        
+        .rating-box { background: #f8fafc; border: 1px solid var(--border-color); padding: 25px; border-radius: 12px; margin: 30px 0; }
+        .stars-container { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-direction: row-reverse; }
+        .star-rate { font-size: 35px; color: #cbd5e1; cursor: pointer; }
+        .stars-container .star-rate:hover, .stars-container .star-rate:hover ~ .star-rate { color: var(--warning); }
     </style>
 </head>
 <body>
@@ -348,48 +85,39 @@
         <div class="header-content">
             <div class="logo-section">
                 <a href="#" class="logo" onclick="location.reload()">MVKET</a>
-                <div class="rating-display" id="global-rating-display">
+                <div class="rating-display">
                     <span class="star-icon">★</span>
                     <span id="global-score">4.8</span> (<span id="global-votes">124</span> balsai)
                 </div>
             </div>
             <div class="auth-section" id="auth-section">
-                <button onclick="openLoginModal()">
-                    <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                    Prisijungti
-                </button>
+                <button onclick="openLoginModal()">Prisijungti su Google</button>
             </div>
         </div>
     </header>
 
-    <!-- LOGIN MODAL -->
     <div id="login-modal" class="modal-overlay hidden">
         <div class="modal-box">
-            <h2 style="color: var(--navy-dark); margin-bottom: 10px;">Prisijungimas</h2>
-            <p style="color: var(--text-muted); font-size: 14px;">Prisijunkite, kad išsaugotumėte savo rezultatus ir įvertintumėte testą.</p>
-            <button class="google-btn" onclick="simulateGoogleLogin()">
-                <svg width="24" height="24" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                Tęsti su Google
-            </button>
-            <button onclick="closeLoginModal()" style="margin-top: 15px; background: none; border: none; color: var(--text-muted); cursor: pointer; text-decoration: underline;">Atšaukti</button>
+            <h2>Prisijungimas</h2>
+            <p>Prisijunkite, kad išsaugotumėte rezultatus ir įvertintumėte testą.</p>
+            <button class="google-btn" onclick="simulateGoogleLogin()">Tęsti su Google</button>
+            <button onclick="closeLoginModal()" style="margin-top: 15px; background: none; border: none; cursor: pointer;">Atšaukti</button>
         </div>
     </div>
 
     <main class="main-wrapper">
-        <!-- START SCREEN -->
         <div id="start-screen" class="screen-card">
-            <h2>Pasiruošę B Kategorijos Egzaminui?</h2>
-            <p>MVKET platforma naudoja naujausią klausimų bazę su realiomis eismo situacijomis. Testą sudaro 30 klausimų, kuriems skiriama 40 minučių. Norint išlaikyti, reikia 80% teisingų atsakymų.</p>
-            <button class="btn btn-primary" style="font-size: 18px; padding: 15px 35px;" onclick="startQuiz()">Pradėti testą</button>
+            <h2>B Kategorijos Egzaminas</h2>
+            <p>MVKET naudoja naujausią klausimų bazę. Testą sudaro lygiai 30 klausimų, skiriama 40 minučių. Norint išlaikyti, reikia atsakyti į bent 24 (80%).</p>
+            <button class="btn btn-primary" style="font-size: 18px;" onclick="startQuiz()">Pradėti testą</button>
         </div>
 
-        <!-- QUIZ SCREEN -->
         <div id="quiz-screen" class="hidden">
             <div id="questions-grid" class="questions-grid"></div>
 
             <div class="quiz-card">
                 <div class="visual-side">
-                    <img id="q-image" src="" alt="Situacija">
+                    <img id="q-image" src="" alt="KET">
                     <div id="q-placeholder" style="color: var(--text-muted); font-style: italic;" class="hidden">Nuotraukos šiam klausimui nėra.</div>
                 </div>
                 <div class="content-side">
@@ -403,22 +131,15 @@
                     </div>
                 </div>
             </div>
-            <div style="text-align: right; margin-top: 20px;">
-                <button class="btn btn-secondary" style="background: #fee2e2; color: #dc2626;" onclick="finishQuiz()">Baigti anksčiau</button>
-            </div>
         </div>
 
-        <!-- RESULT SCREEN -->
         <div id="result-screen" class="screen-card hidden" style="max-width: 800px;">
             <div id="result-badge" style="font-size: 32px; font-weight: 800; padding: 15px; border-radius: 12px; margin-bottom: 20px;"></div>
-            <h3 id="result-percent" style="font-size: 24px; color: var(--navy-dark);">Surinkta: 0%</h3>
+            <h3 id="result-percent" style="font-size: 24px;">Surinkta: 0%</h3>
             
-            <!-- RATING SECTION -->
             <div class="rating-box" id="rating-section">
-                <h4 style="color: var(--navy-dark); font-size: 18px;">Kaip vertinate MVKET platformą?</h4>
-                <div id="login-prompt-rating" style="margin-top: 10px; color: var(--text-muted); font-size: 14px;">
-                    Norėdami palikti įvertinimą, turite <a href="#" onclick="openLoginModal()" style="color: var(--accent-blue);">prisijungti</a>.
-                </div>
+                <h4>Kaip vertinate MVKET?</h4>
+                <div id="login-prompt-rating" style="margin-top: 10px; font-size: 14px;">Norėdami vertinti, turite prisijungti.</div>
                 <div id="stars-ui" class="stars-container hidden">
                     <span class="star-rate" onclick="submitRating(5)">★</span>
                     <span class="star-rate" onclick="submitRating(4)">★</span>
@@ -426,111 +147,89 @@
                     <span class="star-rate" onclick="submitRating(2)">★</span>
                     <span class="star-rate" onclick="submitRating(1)">★</span>
                 </div>
-                <div id="thank-you-msg" class="hidden" style="color: var(--success); font-weight: bold; margin-top: 15px;">Ačiū už jūsų įvertinimą!</div>
+                <div id="thank-you-msg" class="hidden" style="color: var(--success); font-weight: bold; margin-top: 15px;">Ačiū už įvertinimą!</div>
             </div>
 
-            <button class="btn btn-primary" onclick="startQuiz()">Spręsti naują testą</button>
+            <button class="btn btn-primary" onclick="startQuiz()">Spręsti iš naujo</button>
 
-            <!-- REVIEW LIST -->
             <div style="margin-top: 40px; text-align: left;">
-                <h3 style="margin-bottom: 20px; color: var(--navy-dark);">Jūsų atsakymai:</h3>
+                <h3>Jūsų atsakymai:</h3>
                 <div id="review-container"></div>
             </div>
         </div>
     </main>
 
     <script>
-        // --- GOOGLE AUTH & RATING LOGIC (Mock) ---
+        // Google prisijungimo logika
         let isLoggedIn = false;
         let globalVotes = 124;
-        let globalSum = 595.2; // 124 * 4.8
+        let globalSum = 595.2; 
         let userHasVoted = false;
 
-        function openLoginModal() {
-            document.getElementById('login-modal').classList.remove('hidden');
-        }
-
-        function closeLoginModal() {
-            document.getElementById('login-modal').classList.add('hidden');
-        }
-
+        function openLoginModal() { document.getElementById('login-modal').classList.remove('hidden'); }
+        function closeLoginModal() { document.getElementById('login-modal').classList.add('hidden'); }
         function simulateGoogleLogin() {
-            // Imituojame krovimą
             setTimeout(() => {
                 isLoggedIn = true;
                 closeLoginModal();
-                updateAuthUI();
+                document.getElementById('auth-section').innerHTML = `<span style="font-weight: bold; color: var(--navy-dark);">Vartotojas prisijungęs</span>`;
                 checkRatingUI();
-            }, 800);
+            }, 500);
         }
-
-        function updateAuthUI() {
-            const authSection = document.getElementById('auth-section');
-            if (isLoggedIn) {
-                authSection.innerHTML = `
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <div style="width: 32px; height: 32px; background: var(--accent-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">M</div>
-                        <span style="font-weight: 600; color: var(--navy-dark);">Mokinys</span>
-                    </div>
-                `;
-            }
-        }
-
         function checkRatingUI() {
-            const prompt = document.getElementById('login-prompt-rating');
-            const stars = document.getElementById('stars-ui');
             if (isLoggedIn && !userHasVoted) {
-                prompt.classList.add('hidden');
-                stars.classList.remove('hidden');
-            } else if (userHasVoted) {
-                prompt.classList.add('hidden');
-                stars.classList.add('hidden');
+                document.getElementById('login-prompt-rating').classList.add('hidden');
+                document.getElementById('stars-ui').classList.remove('hidden');
             }
         }
-
         function submitRating(stars) {
             if (!isLoggedIn || userHasVoted) return;
-            
-            globalVotes++;
-            globalSum += stars;
-            const newAverage = (globalSum / globalVotes).toFixed(1);
-            
-            // Atnaujinam viršutinį skydelį
-            document.getElementById('global-score').innerText = newAverage;
+            globalVotes++; globalSum += stars;
+            document.getElementById('global-score').innerText = (globalSum / globalVotes).toFixed(1);
             document.getElementById('global-votes').innerText = globalVotes;
-
-            // Atnaujinam UI po balsavimo
             userHasVoted = true;
             document.getElementById('stars-ui').classList.add('hidden');
             document.getElementById('thank-you-msg').classList.remove('hidden');
         }
 
-        // --- QUIZ LOGIC (Išlaikyta senoji stipri bazė) ---
+        // KLAUSIMŲ BAZĖ (Pakeisti paveikslėliai į PNG formatą ir suvesta 31 klausimas)
         const questionPool = [
-            { text: "Ką nurodo šis kelio ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Lithuanian_road_sign_201.svg", options: ["Suteikia pirmenybę važiuoti per nereguliuojamas sankryžas", "Įpareigoja duoti kelią", "Eismas draudžiamas", "Vienašonis eismas"], correct: 0 },
-            { text: "Prieš jus iškilo šis ženklas. Kokie jūsų veiksmai?", image: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Lithuanian_road_sign_203.svg", options: ["Privaloma sustoti", "Duoti kelią kertamuoju keliu važiuojantiems", "Turite pirmenybę", "Padidinti greitį"], correct: 1 },
-            { text: "Ar leidžiama įvažiuoti už šio ženklo?", image: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Lithuanian_road_sign_301.svg", options: ["Leidžiama", "Draudžiama visoms transporto priemonėms, išskyrus maršrutinį", "Tik savaitgaliais", "Tik gyventojams"], correct: 1 },
-            { text: "Maksimalus greitis automagistralėje vasarą?", image: "https://upload.wikimedia.org/wikipedia/commons/f/f6/Lithuanian_road_sign_501.svg", options: ["110 km/h", "120 km/h", "130 km/h", "140 km/h"], correct: 2 },
-            { text: "Ką reiškia šis įspėjamasis ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Lithuanian_road_sign_101.svg", options: ["Staigi nuokalnė", "Staigi įkalnė", "Nelygus kelias", "Siauras kelias"], correct: 1 },
-            { text: "Koks greitis gyvenvietėje, jei nėra kitų ženklų?", image: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Lithuanian_road_sign_329-50.svg", options: ["40 km/h", "50 km/h", "60 km/h", "70 km/h"], correct: 1 },
-            { text: "Kuria kryptimi galima važiuoti?", image: "https://upload.wikimedia.org/wikipedia/commons/7/76/Lithuanian_road_sign_401.svg", options: ["Tik tiesiai", "Tiesiai ir į dešinę", "Tik į kairę", "Apsisukti"], correct: 0 },
+            { text: "Ką nurodo šis kelio ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lithuanian_road_sign_201.svg/300px-Lithuanian_road_sign_201.svg.png", options: ["Suteikia pirmenybę važiuoti per nereguliuojamas sankryžas", "Įpareigoja duoti kelią", "Eismas draudžiamas", "Vienašonis eismas"], correct: 0 },
+            { text: "Prieš jus iškilo šis ženklas. Kokie jūsų veiksmai?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Lithuanian_road_sign_203.svg/300px-Lithuanian_road_sign_203.svg.png", options: ["Privaloma sustoti", "Duoti kelią kertamuoju keliu važiuojantiems", "Turite pirmenybę", "Padidinti greitį"], correct: 1 },
+            { text: "Ar leidžiama įvažiuoti už šio ženklo?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Lithuanian_road_sign_301.svg/300px-Lithuanian_road_sign_301.svg.png", options: ["Leidžiama", "Draudžiama visoms transporto priemonėms, išskyrus maršrutinį", "Tik savaitgaliais", "Tik gyventojams"], correct: 1 },
+            { text: "Maksimalus greitis automagistralėje lengviesiems vasarą?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Lithuanian_road_sign_501.svg/300px-Lithuanian_road_sign_501.svg.png", options: ["110 km/h", "120 km/h", "130 km/h", "140 km/h"], correct: 2 },
+            { text: "Ką reiškia šis įspėjamasis ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Lithuanian_road_sign_101.svg/300px-Lithuanian_road_sign_101.svg.png", options: ["Staigi nuokalnė", "Staigi įkalnė", "Nelygus kelias", "Siauras kelias"], correct: 1 },
+            { text: "Koks greitis gyvenvietėje, jei nėra kitų ženklų?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Lithuanian_road_sign_329-50.svg/300px-Lithuanian_road_sign_329-50.svg.png", options: ["40 km/h", "50 km/h", "60 km/h", "70 km/h"], correct: 1 },
+            { text: "Kuria kryptimi galima važiuoti?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Lithuanian_road_sign_401.svg/300px-Lithuanian_road_sign_401.svg.png", options: ["Tik tiesiai", "Tiesiai ir į dešinę", "Tik į kairę", "Apsisukti"], correct: 0 },
+            { text: "Ką reiškia šis ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Lithuanian_road_sign_302.svg/300px-Lithuanian_road_sign_302.svg.png", options: ["Eismas draudžiamas", "Automobilių eismas draudžiamas", "Stovėti draudžiama", "Ribotas greitis"], correct: 1 },
+            { text: "Ką reiškia šis ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Lithuanian_road_sign_131.svg/300px-Lithuanian_road_sign_131.svg.png", options: ["Pėsčiųjų perėja", "Vaikai", "Darbai kelyje", "Dviračių takas"], correct: 1 },
+            { text: "Ką reiškia šis ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Lithuanian_road_sign_331.svg/300px-Lithuanian_road_sign_331.svg.png", options: ["Sustoti draudžiama", "Stovėti draudžiama", "Muitinė", "Apgręžimo vieta"], correct: 1 },
+            { text: "Ką nurodo šis mėlynas ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Lithuanian_road_sign_507.svg/300px-Lithuanian_road_sign_507.svg.png", options: ["Vienašonis eismas", "Sankryža su vienašoniu", "Stovėjimo vieta", "Apsisukimas"], correct: 0 },
+            { text: "Ką reiškia šis ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Lithuanian_road_sign_552.svg/300px-Lithuanian_road_sign_552.svg.png", options: ["10 km/h", "Gyvenamoji zona (maks 20 km/h)", "30 km/h", "Pėsčiųjų takas"], correct: 1 },
+            // Be nuotraukų
             { text: "Kokia maksimali leistina alkoholio koncentracija pradedantiesiems vairuotojams?", image: "", options: ["0,4 promilės", "0,2 promilės", "0,0 promilės", "0,1 promilės"], correct: 2 },
             { text: "Ką reiškia degantis geltonas šviesoforo signalas?", image: "", options: ["Eismas leidžiamas", "Draudžia eismą ir įspėja apie pasikeitimą", "Suteikia pirmenybę", "Sankryža nereguliuojama"], correct: 1 },
-            { text: "Koks leistinas greitis gyvenamojoje zonoje?", image: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Lithuanian_road_sign_552.svg", options: ["10 km/h", "20 km/h", "30 km/h", "50 km/h"], correct: 1 },
             { text: "Minimalus vasarinių padangų protektoriaus gylis?", image: "", options: ["0.8 mm", "1.6 mm", "3.0 mm", "4.0 mm"], correct: 1 },
             { text: "Minimalus žieminių padangų protektoriaus gylis?", image: "", options: ["1.6 mm", "2.0 mm", "3.0 mm", "4.0 mm"], correct: 2 },
-            { text: "Ką reiškia šis ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/e/ea/Lithuanian_road_sign_302.svg", options: ["Eismas draudžiamas", "Automobilių eismas draudžiamas", "Stovėti draudžiama", "Ribotas greitis"], correct: 1 },
-            { text: "Ką reiškia šis ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/a/a2/Lithuanian_road_sign_131.svg", options: ["Pėsčiųjų perėja", "Vaikai", "Darbai kelyje", "Dviračių takas"], correct: 1 },
-            { text: "Ką reiškia šis ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Lithuanian_road_sign_331.svg", options: ["Sustoti draudžiama", "Stovėti draudžiama", "Muitinė", "Apgręžimo vieta"], correct: 1 },
-            // Pridedame dar keletą, kad būtų pakankamas kiekis demonstracijai
             { text: "Kas privalo išlipus iš automobilio užmiestyje tamsiu paros metu dėvėti liemenę?", image: "", options: ["Tik keleiviai", "Vairuotojas ir keleiviai", "Niekas", "Tik esant rūkui"], correct: 1 },
             { text: "Ar galima naudotis telefonu vairuojant be laisvų rankų įrangos?", image: "", options: ["Galima spūstyje", "Draudžiama, nebent saugiai sustojus", "Galima iki 15 sekundžių", "Galima lėtai važiuojant"], correct: 1 },
-            { text: "Ką nurodo šis mėlynas ženklas?", image: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Lithuanian_road_sign_507.svg", options: ["Vienašonis eismas", "Sankryža su vienašoniu", "Stovėjimo vieta", "Apsisukimas"], correct: 0 },
             { text: "Kada gyvenvietėje galima naudoti garsinį signalą?", image: "", options: ["Pasisveikinti", "Tik siekiant išvengti eismo įvykio", "Paskubinti", "Niekada"], correct: 1 },
-            { text: "Ar privaloma įjungti posūkio signalą prieš persirikiuojant?", image: "", options: ["Privaloma visada", "Tik naktį", "Jei yra kitų automobilių", "Nebūtina"], correct: 0 }
+            { text: "Ar privaloma įjungti posūkio signalą prieš persirikiuojant?", image: "", options: ["Privaloma visada", "Tik naktį", "Jei yra kitų automobilių", "Nebūtina"], correct: 0 },
+            { text: "Kurioje kelio pusėje privaloma palikti sugedusį automobilį?", image: "", options: ["Kairėje", "Kuo dešiniau", "Viduryje", "Nesvarbu"], correct: 1 },
+            { text: "Ar galima lenkti nereguliuojamoje pėsčiųjų perėjoje?", image: "", options: ["Taip", "Draudžiama", "Taip, jei nėra pėsčiųjų", "Taip, bet iš lėto"], correct: 1 },
+            { text: "Kas važiuoja pirmas išvažiuojant iš kiemo?", image: "", options: ["Išvažiuojantis iš kiemo", "Važiuojantis gatve", "Tas, kas didesnis", "Pagal susitarimą"], correct: 1 },
+            { text: "Ar galima vilkti automobilį su sugedusiais stabdžiais lanksčia vilktimi?", image: "", options: ["Taip", "Ne, draudžiama", "Taip, jei atstumas mažas", "Taip, bet tik naktį"], correct: 1 },
+            { text: "Kaip reikia elgtis pradedant slysti ant ledo?", image: "", options: ["Stabdyti staigiai", "Sukti vairą į slydimo pusę ir nestabdyti staigiai", "Įjungti laisvą pavarą", "Užmerkti akis"], correct: 1 },
+            { text: "Ką privalo daryti vairuotojas, artėdamas prie nereguliuojamos perėjos?", image: "", options: ["Garsiai signalizuoti", "Sulėtinti greitį arba sustoti", "Padidinti greitį", "Įjungti tolimąsias šviesas"], correct: 1 },
+            { text: "Ar galima vairuoti automobilį su nebeveikiančiu spidometru?", image: "", options: ["Galima", "Draudžiama", "Galima tik dieną", "Galima iki artimiausios taisyklos"], correct: 1 },
+            { text: "Kaip statyti automobilį įkalnėje prie šaligatvio?", image: "", options: ["Ratus susukti į važiuojamąją dalį", "Ratus susukti į šaligatvį", "Ratus laikyti tiesiai", "Nesvarbu"], correct: 1 },
+            { text: "Kokiu atstumu privaloma pastatyti avarinį ženklą užmiestyje?", image: "", options: ["Bent 25 m", "Bent 50 m", "Bent 10 m", "Nebūtina"], correct: 1 },
+            { text: "Ar leidžiama gabenti vaikus iki 135 cm ūgio be specialios kėdutės?", image: "", options: ["Taip", "Ne, draudžiama", "Galima tik ant kelių", "Galima tik gale"], correct: 1 },
+            { text: "Kas atsako už keleivių saugumą (diržus) kelionės metu?", image: "", options: ["Patys keleiviai", "Vairuotojas", "Niekas", "Policija"], correct: 1 }
         ];
 
-        const TOTAL_QUESTIONS = Math.min(30, questionPool.length); 
+        // Egzamino logika - TIKSLIAI 30 KLAUSIMŲ
+        const TOTAL_QUESTIONS = 30;
         let currentQuestions = [];
         let answers = [];
         let currentIdx = 0;
@@ -538,6 +237,7 @@
         let timeLeft = 2400; // 40 min
 
         function startQuiz() {
+            // Išmaišo visus 31 klausimą ir paima lygiai 30.
             currentQuestions = [...questionPool].sort(() => 0.5 - Math.random()).slice(0, TOTAL_QUESTIONS);
             answers = new Array(TOTAL_QUESTIONS).fill(null);
             currentIdx = 0;
@@ -593,7 +293,7 @@
             });
 
             document.getElementById('prev-btn').disabled = currentIdx === 0;
-            document.getElementById('next-btn').innerText = currentIdx === TOTAL_QUESTIONS - 1 ? 'Baigti' : 'Toliau';
+            document.getElementById('next-btn').innerText = currentIdx === TOTAL_QUESTIONS - 1 ? 'Baigti testą' : 'Toliau';
         }
 
         function goNext() {
@@ -621,8 +321,7 @@
             clearInterval(timerInt);
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
-            
-            checkRatingUI(); // Patikrinam, ar rodyti žvaigždutes
+            checkRatingUI();
 
             let correct = 0;
             currentQuestions.forEach((q, i) => { if(answers[i] === q.correct) correct++; });
