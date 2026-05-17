@@ -34,7 +34,7 @@
             --shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- SVEČIANTIS CUSTOM CURSOR --- */
+        /* --- ŠVIEČIANTIS CUSTOM CURSOR --- */
         html, body { cursor: none; }
         button, a, input, select, .grid-item, .option-button { cursor: none !important; }
         
@@ -210,7 +210,7 @@
 
         .hidden { display: none !important; }
 
-        /* EFEKTAI / ANIMACIJOS */
+        /* ANIMACIJOS */
         @keyframes scaleIn { from { opacity: 0; transform: scale(0.95) translateY(15px); } to { opacity: 1; transform: scale(1) translateY(0); } }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -284,39 +284,28 @@
 
         function toggleTheme() { document.body.classList.toggle('dark-theme'); }
 
-        // --- PROFESIONALIOS DETALIZUOTOS SANKRYŽŲ SCHEMOS (Oficialus dizainas) ---
+        // --- PROFESIONALIOS SANKRYŽŲ SCHEMOS ---
         const advancedIntersections = {
-            // Lygiareikšmė sankryža su asfaltu, šaligatviais, ženklinimu ir tikroviškais auto
             lygiareiksme: `
             <svg viewBox="0 0 400 400" width="340">
-                <!-- Sidewalk / Žolė fone -->
                 <rect x="0" y="0" width="400" height="400" fill="#a3b19b"/>
-                <!-- Asfalto pilka kryžmė -->
                 <rect x="130" y="0" width="140" height="400" fill="#3f4444"/>
                 <rect x="0" y="130" width="400" height="140" fill="#3f4444"/>
-                <!-- Šaligatvio kampų borteliai -->
                 <rect x="0" y="0" width="128" height="128" fill="#1e2522" rx="12"/>
                 <rect x="272" y="0" width="128" height="128" fill="#1e2522" rx="12"/>
                 <rect x="0" y="272" width="128" height="128" fill="#1e2522" rx="12"/>
                 <rect x="272" y="272" width="128" height="128" fill="#1e2522" rx="12"/>
-                <!-- Ženklinimas: Kelio ašies brūkšniai -->
                 <line x1="200" y1="0" x2="200" y2="100" stroke="#fff" stroke-width="3" stroke-dasharray="8,8"/>
                 <line x1="200" y1="300" x2="200" y2="400" stroke="#fff" stroke-width="3" stroke-dasharray="8,8"/>
                 <line x1="0" y1="200" x2="100" y2="200" stroke="#fff" stroke-width="3" stroke-dasharray="8,8"/>
                 <line x1="300" y1="200" x2="400" y2="200" stroke="#fff" stroke-width="3" stroke-dasharray="8,8"/>
-                <!-- „Zebra“ pėsčiųjų perėjos detalizacijai -->
-                <g fill="#fff" opacity="0.6">
-                    <rect x="140" y="105" width="8" height="20"/><rect x="160" y="105" width="8" height="20"/><rect x="180" y="105" width="8" height="20"/><rect x="200" y="105" width="8" height="20"/><rect x="220" y="105" width="8" height="20"/><rect x="240" y="105" width="8" height="20"/><rect x="252" y="105" width="8" height="20"/>
-                </g>
-                <!-- Automobilis 1 (Raudonas, apačioje, juda tiesiai) -->
                 <g transform="translate(210, 310)">
                     <rect x="0" y="0" width="40" height="65" rx="8" fill="#ef4444"/>
-                    <rect x="4" y="12" width="32" height="18" fill="#1e293b" rx="2"/> <!-- stiklas -->
-                    <circle cx="8" cy="4" r="3" fill="#fffdec"/> <!-- žibintai -->
+                    <rect x="4" y="12" width="32" height="18" fill="#1e293b" rx="2"/>
+                    <circle cx="8" cy="4" r="3" fill="#fffdec"/>
                     <circle cx="32" cy="4" r="3" fill="#fffdec"/>
                     <text x="20" y="40" fill="#fff" font-weight="800" font-size="18" text-anchor="middle">1</text>
                 </g>
-                <!-- Automobilis 2 (Mėlynas, dešinėje, juda tiesiai) -->
                 <g transform="translate(310, 150)">
                     <rect x="0" y="0" width="65" height="40" rx="8" fill="#2563eb"/>
                     <rect x="12" y="4" width="18" height="32" fill="#1e293b" rx="2"/>
@@ -326,7 +315,6 @@
                 </g>
             </svg>`,
 
-            // Prioriteto sankryža su ženklais kelkraščiuose
             prioriteto: `
             <svg viewBox="0 0 400 400" width="340">
                 <rect x="0" y="0" width="400" height="400" fill="#a3b19b"/>
@@ -338,22 +326,18 @@
                 <rect x="272" y="272" width="128" height="128" fill="#1e2522" rx="12"/>
                 <line x1="200" y1="0" x2="200" y2="400" stroke="#fff" stroke-width="3" stroke-dasharray="6,6"/>
                 <line x1="0" y1="200" x2="400" y2="200" stroke="#fff" stroke-width="3" stroke-dasharray="6,6"/>
-                <!-- Tikras Ženklas Nr. 201 Pagrindinis kelias prie 1-ojo auto -->
                 <g transform="translate(95, 300)">
                     <rect x="0" y="0" width="22" height="22" transform="rotate(45 11 11)" fill="#fff" stroke="#000" stroke-width="1.5"/>
                     <rect x="2.5" y="2.5" width="17" height="17" transform="rotate(45 11 11)" fill="#ffcc00"/>
                 </g>
-                <!-- Tikras Ženklas Nr. 203 Duoti kelią prie 2-ojo auto -->
                 <g transform="translate(290, 95)">
                     <polygon points="0,0 26,0 13,22" fill="#fff" stroke="#dc2626" stroke-width="3"/>
                 </g>
-                <!-- Auto 1 -->
                 <g transform="translate(210, 310)">
                     <rect x="0" y="0" width="40" height="65" rx="8" fill="#ef4444"/>
                     <rect x="4" y="12" width="32" height="18" fill="#1e293b" rx="2"/>
                     <text x="20" y="40" fill="#fff" font-weight="800" font-size="18" text-anchor="middle">1</text>
                 </g>
-                <!-- Auto 2 -->
                 <g transform="translate(310, 150)">
                     <rect x="0" y="0" width="65" height="40" rx="8" fill="#f59e0b"/>
                     <rect x="12" y="4" width="18" height="32" fill="#1e293b" rx="2"/>
@@ -361,7 +345,6 @@
                 </g>
             </svg>`,
 
-            // Kairysis posūkis su trajektorijos linija
             kairysis: `
             <svg viewBox="0 0 400 400" width="340">
                 <rect x="0" y="0" width="400" height="400" fill="#a3b19b"/>
@@ -372,15 +355,12 @@
                 <rect x="0" y="272" width="128" height="128" fill="#1e2522" rx="12"/>
                 <rect x="272" y="272" width="128" height="128" fill="#1e2522" rx="12"/>
                 <line x1="200" y1="0" x2="200" y2="400" stroke="#fff" stroke-width="3" stroke-dasharray="6,6"/>
-                <!-- Posūkio trajektorijos kreivė -->
                 <path d="M 230 310 Q 230 170 80 170" fill="none" stroke="#fbbf24" stroke-width="4" stroke-dasharray="6,4"/>
-                <!-- Auto 1 (Suka į kairę) -->
                 <g transform="translate(210, 310)">
                     <rect x="0" y="0" width="40" height="65" rx="8" fill="#ef4444"/>
                     <rect x="4" y="12" width="32" height="18" fill="#1e293b" rx="2"/>
                     <text x="20" y="40" fill="#fff" font-weight="800" font-size="18" text-anchor="middle">1</text>
                 </g>
-                <!-- Auto 2 (Ateina priešprieša, tiesiai) -->
                 <g transform="translate(150, 25)">
                     <rect x="0" y="0" width="40" height="65" rx="8" fill="#10b981"/>
                     <rect x="4" y="35" width="32" height="18" fill="#1e293b" rx="2"/>
@@ -388,200 +368,362 @@
                 </g>
             </svg>`,
 
-            // Standartiniai Lietuvos kelio ženklai
             zenklasStop: `<svg viewBox="0 0 100 100" width="150"><polygon points="30,5 70,5 95,30 95,70 70,95 30,95 5,70 5,30" fill="#dc2626" stroke="#fff" stroke-width="3"/><text x="50" y="62" font-size="24" font-weight="900" fill="#fff" text-anchor="middle" font-family="sans-serif">STOP</text></svg>`,
             zenklasApsisukimas: `<svg viewBox="0 0 100 100" width="150"><rect x="5" y="5" width="90" height="90" rx="10" fill="#2563eb" stroke="#fff" stroke-width="2"/><path d="M 50 80 L 50 40 Q 50 20 70 20 Q 80 20 80 35 L 80 45 M 65 40 L 80 55 L 95 40" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>`
         };
 
-        // --- DUOMENŲ BAZĖ SU OFICIALIAIS KET PAVADINIMAIS IR KNYGELĖS PAAIŠKINIMAIS ---
+        // --- 30 VISIŠKAI UNIKALIŲ KLAUSIMŲ DUOMENŲ BAZĖ ---
         const questionPool = [
             { 
                 text: "Kokia tvarka transporto priemonės važiuos per šią lygiareikšmę sankryžą?", 
                 svg: advancedIntersections.lygiareiksme, 
-                options: ["Automobilis 1 važiuos pirmas, automobilis 2 - antras", "Automobilis 2 važiuos pirmas, automobilis 1 - antras", "Abu automobiliai važiuos vienu metu pagal susitarimą"], 
+                options: ["Automobilis 1 važiuos pirmas, automobilis 2 - antras", "Automobilis 2 važiuos pirmas, automobilis 1 - antras", "Abu automobiliai važiuos vienu metu pagal tarpusavio susitarimą"], 
                 correct: 1,
-                explanation: "Teisingas atsakymas: Automobilis 2 važiuoja pirmas. Pagal KET 154 punktą (nereguliuojamų lygiareikšmių kelių sankryža), vairuotojas privalo duoti kelią iš dešinės artėjančioms transporto priemonėms. Kadangi automobiliui 1 iš dešinės pusės artėja automobilis 2, jis turi pirmenybę. Pirmasis variantas netinka, nes pažeistų „dešinės rankos“ taisyklę. Trečiasis variantas netinka, nes susitarimas taikomas tik tada, kai transporto priemonės artėja iš visų keturių pusių."
+                explanation: "Teisingas atsakymas: Automobilis 2 važiuoja pirmas. Pagal KET 154 punktą (lygiareikšmių kelių sankryža), vairuotojas privalo duoti kelią iš dešinės artėjančioms transporto priemonėms."
             },
             { 
                 text: "Kokia tvarka transporto priemonės pravažiuos šią prioriteto ženklais reguliuojamą sankryžą?", 
                 svg: advancedIntersections.prioriteto, 
                 options: ["Automobilis 2, nes jis yra iš dešinės pusės", "Automobilis 1, nes prieš jį įrengtas Ženklas Nr. 201 „Pagrindinis kelias“", "Vairuotojai turi vadovautis abipusiu mandagumu"], 
                 correct: 1,
-                explanation: "Teisingas atsakymas: Automobilis 1 važiuoja pirmas. Pagal KET 143 punktą, šalutiniu keliu važiuojantis vairuotojas (Automobilis 2, prieš kurį pastatytas Ženklas Nr. 203 „Duoti kelią“) privalo duoti kelią transporto priemonėms, artėjančioms prie sankryžos pagrindiniu keliu. Pirmasis variantas visiškai netinka, nes prioriteto ženklai panaikina dešinės rankos taisyklę šalutinio eismo atžvilgiu."
+                explanation: "Teisingas atsakymas: Automobilis 1 važiuoja pirmas. Šalutiniu keliu važiuojantis vairuotojas (Automobilis 2, prieš kurį pastatytas Ženklas Nr. 203 „Duoti kelią“) privalo duoti kelią transporto priemonėms, artėjančioms pagrindiniu keliu."
             },
             { 
                 text: "Automobilis 1 sankryžoje suka į kairę, o Automobilis 2 artėja priešpriešais ir važiuoja tiesiai. Kas turi pirmenybę?", 
                 svg: advancedIntersections.kairysis, 
-                options: ["Automobilis 1, nes jis jau atliko posūkio manevrą sankryžos centre", "Automobilis 2, nes važiuoja priešpriešiais tiesiai", "Pirmenybė priklauso tam, kuris pirmas įvažiavo į sankryžą"], 
+                options: ["Automobilis 1, nes jis jau atliko posūkio manevrą", "Automobilis 2, nes važiuoja priešpriešiais tiesiai", "Pirmenybė priklauso tam, kuris pirmas įvažiavo į sankryžą"], 
                 correct: 1,
-                explanation: "Teisingas atsakymas: Automobilis 2 važiuoja pirmas. Pagal KET 150 punktą, sukdamas į kairę (arba apsisukdamas), vairuotojas privalo duoti kelią transporto priemonėms, važiuojančioms priešpriešine kryptimi tiesiai arba į dešinę. Pirmasis ir trečiasis variantai netinka, kadangi įvažiavimo greitis ar manevro pradžia nesuteikia teisinio pranašumo prieš tiesiai judantį eismą."
+                explanation: "Teisingas atsakymas: Automobilis 2 važiuoja pirmas. Sukdamas į kairę, vairuotojas privalo duoti kelią priešpriešine kryptimi tiesiai arba į dešinę važiuojančioms transporto priemonėms."
             },
             { 
                 text: "Ką nurodo šis kelio ženklas Nr. 204?", 
                 svg: advancedIntersections.zenklasStop, 
-                options: ["Sustoti draudžiama, eismas leidžiamas nesustojus", "Ženklas Nr. 204 „Sustoti neprivaloma“", "Ženklas Nr. 204 „STOP“ draudžia važiuoti nesustojus prieš stop liniją, o jei jos nėra - prieš važiuojamųjų dalių kirtimą"], 
-                correct: 2,
-                explanation: "Teisingas atsakymas: Ženklas Nr. 204 „STOP“ įpareigoja visiškai sustabdyti transporto priemonę. Pirmasis ir antrasis variantai teisiškai neturi jokio pagrindo ir sukeltų avarinę situaciją, kadangi šis ženklas dažnai statomas itin pavojingose vietose arba prie geležinkelio pervažų."
+                options: ["Sustoti draudžiama, eismas leidžiamas nesustojus", "Ženklas „STOP“ įpareigoja sustoti prieš stop liniją, o jei jos nėra - prieš važiuojamųjų dalių kirtimą", "Ženklas reiškia, kad priekyje muitinė"], 
+                correct: 1,
+                explanation: "Teisingas atsakymas: Ženklas Nr. 204 „STOP“ draudžia važiuoti per jį nesustojus."
             },
             { 
                 text: "Ką nurodo šis mėlynas ženklas?", 
                 svg: advancedIntersections.zenklasApsisukimas, 
-                options: ["Ženklas Nr. 515 „Apsisukimo vieta“ leidžia apsisukti, tačiau posūkis į kairę yra draudžiamas", "Leidžia tik posūkį į kairę", "Draudžia bet kokį manevrą"], 
+                options: ["Ženklas Nr. 515 „Apsisukimo vieta“ leidžia apsisukti, tačiau posūkis į kairę yra draudžiamas", "Leidžia tik posūkį į kairę", "Nurodo aklavietę kairėje pusėje"], 
                 correct: 0,
-                explanation: "Teisingas atsakymas: Tai Ženklas Nr. 515 „Apsisukimo vieta“. Pagal KET nurodymus, šis ženklas griežtai leidžia tik apsisukti, bet posūkis į kairę (pavyzdžiui, į kiemą ar šalutinį kelią) yra draudžiamas. Antrasis variantas netinka, nes ženklas atlieka priešingą funkciją."
+                explanation: "Teisingas atsakymas: Tai Ženklas Nr. 515 „Apsisukimo vieta“. Jis leidžia tik apsisukti, posūkis į kairę – draudžiamas."
+            },
+            {
+                text: "Koks maksimalus leistinas greitis lengviesiems automobiliams automagistralėse nuo balandžio 1 d. iki spalio 31 d.?",
+                svg: null, options: ["110 km/h", "120 km/h", "130 km/h"], correct: 2,
+                explanation: "Vasaros sezono metu (nuo balandžio 1 d. iki spalio 31 d.) automagistralėse lengviesiems automobiliams leidžiama važiuoti 130 km/h greičiu."
+            },
+            {
+                text: "Ką reiškia mirksintis žalias šviesoforo signalas?",
+                svg: null, options: ["Eismas draudžiamas, privaloma sustoti", "Eismas leidžiamas, bet jo laikas baigiasi ir netrukus bus įjungtas draudžiamasis signalas", "Šviesoforas sugedo, reikia vadovautis ženklais"], correct: 1,
+                explanation: "Mirksintis žalias signalas leidžia eismą ir įspėja, kad netrukus bus įjungtas geltonas signalas."
+            },
+            {
+                text: "Koks maksimalus leistinas neblaivumas (alkoholio koncentracija) pradedantiesiems vairuotojams (turintiems iki 2 metų stažą)?",
+                svg: null, options: ["0,0 promilės", "0,2 promilės", "0,4 promilės"], correct: 0,
+                explanation: "Pradedantieji vairuotojai, taip pat taksi, autobusų, motociklų ir krovininių auto vairuotojai privalo būti visiškai blaivūs (0,0 promilės)."
+            },
+            {
+                text: "Ar leidžiama lenkti transporto priemones nereguliuojamoje sankryžoje, važiuojant šalutiniu keliu?",
+                svg: null, options: ["Leidžiama, jei nėra artėjančių automobilių", "Draudžiama", "Leidžiama tik lenkiant dviratininkus"], correct: 1,
+                explanation: "Lenkti sankryžose draudžiama, išskyrus atvejus, kai lenkiama pagrindiniame kelyje, kurio kirtimai nepažymėti prioriteto ženklais."
+            },
+            {
+                text: "Ką nurodo geltona ištisinė linija ant važiuojamosios dalies krašto arba šaligatvio bortelio?",
+                svg: null, options: ["Draudžiama sustoti ir stovėti", "Draudžiama tik stovėti, bet sustoti galima", "Žymi pėsčiųjų zoną"], correct: 0,
+                explanation: "Geltona ištisinė linija žymi vietą, kur draudžiama transporto priemonėms sustoti ir stovėti."
+            },
+            {
+                text: "Kokiu minimaliu atstumu laiko atžvilgiu rekomenduojama važiuoti už kitos transporto priemonės gyvenvietėje?",
+                svg: null, options: ["Ne mažiau kaip per 1 sekundę", "Ne mažiau kaip per 2 sekundes", "Ne mažiau kaip per 5 sekundes"], correct: 1,
+                explanation: "KET rekomenduoja išlaikyti ne mažesnį kaip 2 sekundžių (ne gyvenvietėse - 3 sekundžių) atstumą iki priekyje važiuojančio auto."
+            },
+            {
+                text: "Kuriose vietose transporto priemonėms yra griežtai draudžiama apsisukti?",
+                svg: null, options: ["Geležinkelio pervažose, tuneliuose, ant tiltų, estakadų, viadukų ir po jais", "Sankryžose, kuriose yra šviesoforai", "Keliuose su viena eismo juosta"], correct: 0,
+                explanation: "Pagal KET apsisukti draudžiama geležinkelio pervažose, tuneliuose, ant tiltų, viadukų, estakadų ir po jais, taip pat riboto matomumo vietose."
+            },
+            {
+                text: "Kas tenta pirmenybę, kai maršrutinis transportas (autobusas) pradeda važiuoti iš pažymėtos stotelės gyvenvietėje?",
+                svg: null, options: ["Kiti vairuotojai privalo duoti kelią autobusui", "Autobuso vairuotojas privalo praleisti visus automobilius", "Pirmenybė nustatoma pagal dešinės rankos taisyklę"], correct: 0,
+                explanation: "Gyvenvietėse vairuotojai privalo duoti kelią maršrutiniam transportui, pradedančiam važiuoti iš pažymėtos stotelės."
+            },
+            {
+                text: "Kokiu maksimaliu greičiu leidžiama vilkti standžia ar lanksčia jungtimi sugedusią transporto priemonę?",
+                svg: null, options: ["Ne didesniu kaip 50 km/h greičiu", "Ne didesniu kaip 70 km/h greičiu", "Greitis neribojamas, jei jungtis standi"], correct: 0,
+                explanation: "Vilkti transporto priemones bet kokiais keliais leidžiama ne didesniu kaip 50 km/h greičiu."
+            },
+            {
+                text: "Ar privaloma prisegti saugos diržus keleiviams, sėdintiems ant galinių automobilio sėdynių?",
+                svg: null, options: ["Privaloma visada, jei tik įrengti saugos diržai", "Neprivaloma gyvenvietėse", "Neprivaloma, jei keleivis pilnametis"], correct: 0,
+                explanation: "Vasi transporto priemonėje važiuojantys keleiviai privalo būti prisisegę saugos diržais, jei jie yra įrengti."
+            },
+            {
+                text: "Ką reiškia reguliuotojo vertikaliai į viršų iškelta ranka?",
+                svg: null, options: ["Eismas leidžiamas visomis kryptimis", "Visiems eismo dalyviams draudžiama judėti; privaloma sustoti", "Sustoti turi tik pėstieji"], correct: 1,
+                explanation: "Vertikaliai pakelta ranka reiškia signalą „Dėmesio, eismas draudžiamas“. Visi privalo sustoti."
+            },
+            {
+                text: "Kokiu atstumu iki gyvenvietės pradžios statomi įspėjamieji kelio ženklai?",
+                svg: null, options: ["10-30 metrų atstumu", "50-100 metrų atstumu", "150-300 metrų atstumu"], correct: 1,
+                explanation: "Gyvenvietėse įspėjamieji kelio ženklai statomi likus 50-100 metrų iki pavojingo ruožo pradžios."
+            },
+            {
+                text: "Kokiu atstumu ne gyvenvietėse statomi įspėjamieji kelio ženklai?",
+                svg: null, options: ["50-100 metrų atstumu", "150-300 metrų atstumu", "400-600 metrų atstumu"], correct: 1,
+                explanation: "Ne gyvenvietėse įspėjamieji ženklai statomi likus 150-300 metrų, nes automobilių greičiai yra didesni."
+            },
+            {
+                text: "Kokiu atstumu iki priešpriešiais ateinančios transporto priemonės naktį privaloma tolimąsias šviesas perjungti į artimąsias?",
+                svg: null, options: ["Likus ne mažiau kaip 50 metrų", "Likus ne mažiau kaip 150 metrų", "Likus ne mažiau kaip 300 metrų"], correct: 1,
+                explanation: "Tolimosios šviesos turi būti perjungtos į artimąsias likus ne mažiau kaip 150 m iki priešpriešinės transporto priemonės."
+            },
+            {
+                text: "Kokiu minimaliu atstumu prieš pėsčiųjų perėją leidžiama sustoti ar pastatyti automobilį stovėjimui?",
+                svg: null, options: ["Sustoti galima iškart už perėjos, bet prieš ją turi būti bent 5 metrų tarpas", "Ne arčiau kaip 10 metrų prieš perėją", "Atstumas nėra reglamentuojamas"], correct: 0,
+                explanation: "Draudžiama sustoti ir stovėti pėsčiųjų perėjose ir arčiau kaip 5 metrai prieš jas."
+            },
+            {
+                text: "Ką privalo daryti vairuotojas, išgirdęs garsinį signalą ir pamatęs artėjančią transporto priemonę su įjungtais mėlynais ir raudonais švyturėliais?",
+                svg: null, options: ["Padidinti greitį ir kuo greičiau atlaisvinti sankryžą", "Sustoti dešiniajame kelkraštyje (jei jo nėra – prie važiuojamosios dalies krašto)", "Tęsti judėjimą nekeičiant krypties"], correct: 1,
+                explanation: "Vairuotojai privalo duoti kelią transporto priemonėms su įjungtais mėlynais ir raudonais švyturėliais, sustodami dešinėje."
+            },
+            {
+                text: "Ką reiškia horizontali balta ištisinė ženklinimo linija kelių eisme?",
+                svg: null, options: ["Sustojimo vietą sankryžoje", "Liniją, kurią kirsti griežtai draudžiama, išskyrus specialius KET nurodytus atvejus", "Ji skirta tik pėsčiųjų eismui riboti"], correct: 1,
+                explanation: "Ištisinę ženklinimo liniją kirsti draudžiama. Ji skiria priešpriešinių krypčių eismo juostas arba žymi važiuojamosios dalies kraštus."
+            },
+            {
+                text: "Ar leidžiama važiuoti atbulomis automagistralėse ar greitkeliuose?",
+                svg: null, options: ["Draudžiama", "Leidžiama, jei netyčia praleidote posūkį", "Leidžiama tik kelkraščiu"], correct: 0,
+                explanation: "Automagistralėse ir greitkeliuose suktis atgal, įvažiuoti į skiriamąją juostą bei važiuoti atbulomis yra griežtai draudžiama."
+            },
+            {
+                text: "Nuo kokio amžiaus asmuo gali įgyti teisę vairuoti B kategorijos transporto priemones (laikyti praktinį egzaminą Regitroje)?",
+                svg: null, options: ["Nuo 16 metų", "Nuo 17 metų", "Nuo 18 metų"], correct: 2,
+                explanation: "Teisė vairuoti B kategorijos lengvuosius automobilius suteikiama asmenims nuo 18 metų."
+            },
+            {
+                text: "Ką daryti, jei tamsiu paros metu jus akina priešpriešiais važiuojančio automobilio tolimosios šviesos?",
+                svg: null, options: ["Įjungti savo tolimąsias šviesas ir akinti atgal", "Įjungti avarinę šviesos signalizaciją, nesikeičiant eismo juostos sumažinti greitį ir prireikus sustoti", "Nukreipti automobilį į šalikelę"], correct: 1,
+                explanation: "Jei esate akimamas, KET įpareigoja įjungti avarinį signalą, lėtinti greitį nekeičiant juostos ir visiškai sustoti."
+            },
+            {
+                text: "Kas laikoma „Sustojimu“ pagal Lietuvos Respublikos KET?",
+                svg: null, options: ["Transporto priemonės sustabdymas ne ilgesniam laikui, nei reikia keleiviams įlaipinti ar kroviniui krauti (iki 5 min)", "Bet koks automobilio stovėjimas ilgiau nei valandą", "Variklio išjungimas nakties metu"], correct: 0,
+                explanation: "Sustojimas – transporto priemonės sustabdymas ne ilgesniam laikui, nei reikia keleiviams įlaipinti (išlaipinti) arba kroviniams krauti."
+            },
+            {
+                text: "Ar leidžiama lenkti transporto priemonę, kuri pati tuo metu lenkia kitą priekyje važiuojantį objektą (dvigubas lenkimas)?",
+                svg: null, options: ["Leidžiama, jei kelias yra pakankamai platus", "Draudžiama lenkti transporto priemonę, kuri pati lenkia", "Leidžiama tik šviesiu paros metu"], correct: 1,
+                explanation: "Draudžiama lenkti transporto priemonę, kuri pati lenkia, nes tai sukelia itin didelį avarinį pavojų kelio ruože."
+            },
+            {
+                text: "Kokiu minimaliu atstumu iki geležinkelio pervažos pradedamas taikyti draudimas lenkti kitas transporto priemones?",
+                svg: null, options: ["Likus mažiau kaip 50 metrų", "Likus mažiau kaip 100 metrų", "Draudžiama lenkti tik pačioje pervažoje"], correct: 1,
+                explanation: "Geležinkelio pervažose ir likus mažiau kaip 100 metrų atstumu iki jų lenkti kitas transporto priemones draudžiama."
+            },
+            {
+                text: "Ką reiškia prie raudono šviesoforo signalo pritvirtinta lentelė su žalia rodykle, nukreipta į dešinę?",
+                svg: null, options: ["Suteikia pirmenybę sukti į dešinę nesustojus", "Leidžia vairuotojams sukti į dešinę ir degant draudžiamam šviesoforo signalui, tačiau privaloma duoti kelią kitiems", "Rodyklė skirta tik autobusams"], correct: 1,
+                explanation: "Žalia rodyklė lentelėje leidžia sukti į dešinę degant raudonam signalui, tačiau vairuotojas privalo užtikrinti saugumą ir praleisti kitus."
+            },
+            {
+                text: "Ar privaloma įjungti posūkio signalą įvažiuojant į žiedinę sankryžą?",
+                svg: null, options: ["Privaloma įjungti dešinį posūkį", "Privaloma įjungti kairį posūkį", "Įvažiuojant į žiedą posūkio signalas nerodomas, jis rodomas tik išvažiuojant iš jo"], correct: 2,
+                explanation: "Įvažiuojant į žiedinę sankryžą posūkio rodyti nereikia. Posūkio signalas privalomai rodomas tik atliekant manevrą pačiame žiede arba išvažiuojant iš jo."
             }
         ];
 
-        // Generuojame papildomus testinius klausimus, kad testas turėtų lygiai 30 klausimų
-        for(let i = 6; i <= 30; i++) {
-            questionPool.push({
-                text: `KET teorijos klausimas Nr. ${i}: Ar leidžiama naudotis mobiliojo ryšio priemonėmis vairuojant automobilį be laisvų rankų įrangos?`,
-                svg: null,
-                options: ["Draudžiama, išskyrus atvejus, kai transporto priemonė yra saugiai pastatyta parkavimo vietoje", "Leidžiama lėtai važiuojant spūstyje", "Leidžiama tik skubiais atvejais"],
-                correct: 0,
-                explanation: "Teisingas atsakymas: Naudotis telefonu be įrangos griežtai draudžiama. Pagal LR KET, transporto priemonės judėjimo metu (įskaitant stovėjimą prie raudono šviesoforo signalo ar spūstyje) vairuotojui draudžiama rankomis naudotis telefonu. Kiti variantai yra neteisėti."
-            });
+        // --- FISHER-YATES SHUFFLE ALGORITMAS ---
+        function fisherYatesShuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
         }
 
         const TOTAL_QUESTIONS = 30;
         let currentQuestions = [];
-        let answers = [];
-        let currentIdx = 0;
-        let timerInt;
-        let timeLeft = 2400; 
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(TOTAL_QUESTIONS).fill(null);
+        let examTimer = null;
+        let timeLeft = 40 * 60;
 
         function startQuiz() {
-            currentQuestions = [...questionPool].sort(() => 0.5 - Math.random()).slice(0, TOTAL_QUESTIONS);
-            answers = new Array(TOTAL_QUESTIONS).fill(null);
-            currentIdx = 0;
-            timeLeft = 2400;
-            
+            currentQuestions = fisherYatesShuffle([...questionPool]).slice(0, TOTAL_QUESTIONS);
+            currentQuestionIndex = 0;
+            userAnswers = new Array(TOTAL_QUESTIONS).fill(null);
+            timeLeft = 40 * 60;
+
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
-            
+
             buildGrid();
-            showQuestion();
+            showQuestion(0);
             startTimer();
         }
 
         function buildGrid() {
             const grid = document.getElementById('questions-grid');
             grid.innerHTML = '';
-            for(let i=0; i<TOTAL_QUESTIONS; i++) {
-                const btn = document.createElement('button');
-                btn.className = 'grid-item';
-                btn.id = `grid-${i}`;
-                btn.innerText = i+1;
-                btn.onclick = () => { currentIdx = i; showQuestion(); };
-                grid.appendChild(btn);
+            for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+                const item = document.createElement('div');
+                item.className = 'grid-item';
+                item.innerText = i + 1;
+                item.id = `grid-item-${i}`;
+                item.onclick = () => showQuestion(i);
+                grid.appendChild(item);
             }
         }
 
-        function showQuestion() {
-            for(let i=0; i<TOTAL_QUESTIONS; i++){
-                const btn = document.getElementById(`grid-${i}`);
-                btn.className = 'grid-item' + (answers[i] !== null ? ' answered' : '') + (i === currentIdx ? ' current' : '');
-            }
+        function showQuestion(index) {
+            document.querySelectorAll('.grid-item').forEach((el, idx) => {
+                el.classList.remove('current');
+                if (userAnswers[idx] !== null) {
+                    el.classList.add('answered');
+                } else {
+                    el.classList.remove('answered');
+                }
+            });
+            
+            currentQuestionIndex = index;
+            const qItem = document.getElementById(`grid-item-${index}`);
+            if (qItem) qItem.classList.add('current');
 
-            const q = currentQuestions[currentIdx];
-            document.getElementById('q-text').innerText = `${currentIdx + 1}. ${q.text}`;
+            const qData = currentQuestions[index];
+            
+            // ČIA PAKEISTA: Atvaizduojame tik patį klausimą be jokių prefiksų
+            document.getElementById('q-text').innerText = qData.text;
 
             const visualContainer = document.getElementById('q-visual-container');
             const placeholder = document.getElementById('q-placeholder');
             
-            if(q.svg) {
-                visualContainer.innerHTML = q.svg;
-                visualContainer.classList.remove('hidden');
+            if (qData.svg) {
+                visualContainer.innerHTML = qData.svg;
                 placeholder.classList.add('hidden');
+                visualContainer.classList.remove('hidden');
             } else {
                 visualContainer.innerHTML = '';
                 visualContainer.classList.add('hidden');
                 placeholder.classList.remove('hidden');
             }
 
-            const options = document.getElementById('options-block');
-            options.innerHTML = '';
-            q.options.forEach((opt, idx) => {
+            const optionsBlock = document.getElementById('options-block');
+            optionsBlock.innerHTML = '';
+            
+            qData.options.forEach((opt, oIdx) => {
                 const btn = document.createElement('button');
-                btn.className = 'option-button' + (answers[currentIdx] === idx ? ' selected' : '');
+                btn.className = 'option-button';
+                if (userAnswers[index] === oIdx) {
+                    btn.classList.add('selected');
+                }
                 btn.innerText = opt;
-                btn.onclick = () => { 
-                    answers[currentIdx] = idx; 
-                    // Tiesiog pažymime vizualiai, neperjungiant automatiškai
-                    showQuestion();
-                };
-                options.appendChild(btn);
+                btn.onclick = () => selectOption(oIdx);
+                optionsBlock.appendChild(btn);
             });
+            
+            document.getElementById('prev-btn').disabled = (index === 0);
+            const nextBtn = document.getElementById('next-btn');
+            if (index === TOTAL_QUESTIONS - 1) {
+                nextBtn.innerText = "Baigti egzaminą";
+                nextBtn.classList.remove('btn-primary');
+                nextBtn.style.backgroundColor = 'var(--success)';
+                nextBtn.style.color = '#fff';
+            } else {
+                nextBtn.innerText = "Toliau";
+                nextBtn.style.backgroundColor = '';
+                nextBtn.classList.add('btn-primary');
+            }
+        }
 
-            document.getElementById('prev-btn').disabled = currentIdx === 0;
-            document.getElementById('next-btn').innerText = currentIdx === TOTAL_QUESTIONS - 1 ? 'Baigti egzaminą' : 'Toliau';
+        function selectOption(optIndex) {
+            userAnswers[currentQuestionIndex] = optIndex;
+            const currentGridItem = document.getElementById(`grid-item-${currentQuestionIndex}`);
+            if (currentGridItem) currentGridItem.classList.add('answered');
+            
+            document.querySelectorAll('.option-button').forEach((btn, idx) => {
+                if (idx === optIndex) btn.classList.add('selected');
+                else btn.classList.remove('selected');
+            });
+        }
+
+        function goPrev() {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+            }
         }
 
         function goNext() {
-            if(currentIdx < TOTAL_QUESTIONS - 1) { currentIdx++; showQuestion(); }
-            else { finishQuiz(); }
-        }
-        function goPrev() {
-            if(currentIdx > 0) { currentIdx--; showQuestion(); }
+            if (currentQuestionIndex < TOTAL_QUESTIONS - 1) {
+                showQuestion(currentQuestionIndex + 1);
+            } else {
+                finishExam();
+            }
         }
 
         function startTimer() {
-            clearInterval(timerInt);
-            timerInt = setInterval(() => {
-                if(timeLeft <= 0) finishQuiz();
-                else {
-                    timeLeft--;
-                    let m = Math.floor(timeLeft / 60);
-                    let s = timeLeft % 60;
-                    document.getElementById('timer').innerText = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+            if (examTimer) clearInterval(examTimer);
+            examTimer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(examTimer);
+                    finishExam();
+                } else {
+                    const mins = Math.floor(timeLeft / 60);
+                    const secs = timeLeft % 60;
+                    document.getElementById('timer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
                 }
             }, 1000);
         }
 
-        function finishQuiz() {
-            clearInterval(timerInt);
+        function finishExam() {
+            clearInterval(examTimer);
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
 
-            let correct = 0;
-            currentQuestions.forEach((q, i) => { if(answers[i] === q.correct) correct++; });
-            const percent = Math.round((correct / TOTAL_QUESTIONS) * 100);
-            
-            const badge = document.getElementById('result-badge');
-            if(percent >= 80) {
-                badge.innerText = "✓ EGZAMINAS IŠLAIKYTAS";
-                badge.style.background = "rgba(16, 185, 129, 0.15)";
-                badge.style.color = "var(--success)";
-            } else {
-                badge.innerText = "✕ NEIŠLAIKYTA";
-                badge.style.background = "rgba(239, 68, 68, 0.15)";
-                badge.style.color = "var(--danger)";
-            }
-            document.getElementById('result-percent').innerText = `Jūsų rezultatas: ${percent}% (${correct} iš ${TOTAL_QUESTIONS} teisingi)`;
+            let correctCount = 0;
+            const reviewContainer = document.getElementById('review-container');
+            reviewContainer.innerHTML = '';
 
-            const container = document.getElementById('review-container');
-            container.innerHTML = '';
-            currentQuestions.forEach((q, i) => {
-                const isCorrect = answers[i] === q.correct;
-                const div = document.createElement('div');
-                div.style.background = "var(--grid-inactive)"; 
-                div.style.padding = "25px"; 
-                div.style.borderRadius = "18px"; 
-                div.style.marginBottom = "20px"; 
-                div.style.border = "1px solid var(--border)";
-                
-                div.innerHTML = `
-                    <div style="font-weight:800; font-size:17px; margin-bottom:12px;">${i+1}. ${q.text}</div>
-                    ${q.svg ? `<div style="margin-bottom:15px; background: rgba(255,255,255,0.8); padding:10px; border-radius:12px; display:inline-block;">${q.svg}</div>` : ''}
-                    <div style="font-size:15px; margin-bottom:6px;">Jūsų pasirinkimas: <span style="font-weight:bold; color:${isCorrect ? 'var(--success)' : 'var(--danger)'}">${answers[i] !== null ? q.options[answers[i]] : 'Neatsakyta'}</span></div>
-                    ${!isCorrect ? `<div style="font-size:15px; margin-bottom:10px;">Teisingas atsakymas: <span style="font-weight:bold; color:var(--success)">${q.options[q.correct]}</span></div>` : ''}
-                    <div class="explanation-box">
-                        <strong>Oficialus KET knygelės komentaras:</strong><br>${q.explanation}
-                    </div>
+            currentQuestions.forEach((q, idx) => {
+                const uAns = userAnswers[idx];
+                const isCorrect = (uAns === q.correct);
+                if (isCorrect) correctCount++;
+
+                const itemReview = document.createElement('div');
+                itemReview.style.marginBottom = '25px';
+                itemReview.style.padding = '20px';
+                itemReview.style.borderRadius = '16px';
+                itemReview.style.backgroundColor = isCorrect ? 'rgba(16, 185, 129, 0.08)' : 'rgba(239, 68, 68, 0.08)';
+                itemReview.style.borderLeft = `5px solid ${isCorrect ? 'var(--success)' : 'var(--danger)'}`;
+
+                const userText = uAns !== null ? q.options[uAns] : 'Atsakymas nepasirinktas';
+                const correctText = q.options[q.correct];
+
+                itemReview.innerHTML = `
+                    <h4 style="margin-bottom: 8px; font-size: 16px;">${idx + 1}. ${q.text}</h4>
+                    <p style="font-size: 14px; margin-bottom: 4px;">Jūsų atsakymas: <strong style="color: ${isCorrect ? 'var(--success)' : 'var(--danger)'};">${userText}</strong></p>
+                    ${!isCorrect ? `<p style="font-size: 14px; margin-bottom: 8px;">Teisingas atsakymas: <strong style="color: var(--success);">${correctText}</strong></p>` : ''}
+                    <div class="explanation-box">${q.explanation}</div>
                 `;
-                container.appendChild(div);
+                reviewContainer.appendChild(itemReview);
             });
+
+            const percent = Math.round((correctCount / TOTAL_QUESTIONS) * 100);
+            const passed = percent >= 80;
+
+            const badge = document.getElementById('result-badge');
+            badge.innerText = passed ? "EGZAMINAS IŠLAIKYTAS" : "EGZAMINAS NEIŠLAIKYTAS";
+            badge.style.backgroundColor = passed ? 'var(--success)' : 'var(--danger)';
+            badge.style.color = '#fff';
+
+            document.getElementById('result-percent').innerText = `Teisingai atsakyta: ${correctCount} iš ${TOTAL_QUESTIONS} klausimų (${percent}%)`;
         }
     </script>
 </body>
