@@ -514,5 +514,37 @@
   setInterval(fetchPlayerCount, POLL_INTERVAL_MS);
 </script>
 
+<script>
+  // Replace this with your actual URL from the Network tab
+  const PLAYER_COUNT_API = "https://api.gtps.cloud/api/server/50/statistics";
+
+  const countEl = document.getElementById('playerCount');
+  const dotEl   = document.getElementById('statusDot');
+  const labelEl = document.getElementById('playerLabel');
+
+  async function fetchPlayerCount() {
+    try {
+      const response = await fetch(PLAYER_COUNT_API);
+      if (!response.ok) throw new Error("HTTP error " + response.status);
+      
+      const data = await response.json();
+      
+      // Update this based on the key found in your JSON response (e.g., data.online)
+      const online = data.online || 0; 
+
+      countEl.textContent = online;
+      labelEl.textContent = online === 1 ? "player online" : "players online";
+      dotEl.classList.remove('offline');
+    } catch (err) {
+      console.warn("Blocked by CORS or Server Error. Check F12 Console.");
+      countEl.textContent = "!";
+      labelEl.textContent = "offline";
+      dotEl.classList.add('offline');
+    }
+  }
+
+  fetchPlayerCount();
+  setInterval(fetchPlayerCount, 30000);
+</script>  
 </body>
 </html>
