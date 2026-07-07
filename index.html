@@ -150,46 +150,10 @@
     align-items: center;
   }
 
-  .pill {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 22px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    background: rgba(9,22,46,0.6);
-    backdrop-filter: blur(6px);
-    animation: fadeIn 0.8s ease-out forwards;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-  }
-  .pill:hover { transform: scale(1.05); border-color: var(--glow); }
-
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
-  .dot {
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: #58e39e;
-    box-shadow: 0 0 10px #58e39e;
-    animation: pulse 1.8s ease-in-out infinite;
-  }
-  .dot.offline { background:#e35858; box-shadow: 0 0 10px #e35858; animation:none; }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.45; transform: scale(0.8); }
-  }
-
-  .pill .count {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--glow-hot);
-    transition: opacity 0.2s ease;
-  }
-  .pill .label { font-size: 0.8rem; color: var(--ink-dim); letter-spacing: 0.04em; }
 
   .play-btn {
     display: flex;
@@ -217,7 +181,6 @@
   }
   .play-btn svg { width: 22px; height: 22px; fill: currentColor; }
 
-  /* New Wide Discord Button */
   .discord-btn-wide {
     display: flex;
     align-items: center;
@@ -400,12 +363,6 @@
 
     <div class="action-container">
       <div class="action-row">
-        <div class="pill">
-          <span id="statusDot" class="dot"></span>
-          <span id="playerCount" class="count">—</span>
-          <span class="label" id="playerLabel">players online</span>
-        </div>
-
         <button class="play-btn" onclick="openModal()">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
@@ -479,43 +436,6 @@
   function toggleWindowsHosts() {
     hostsWrapper.classList.toggle('active');
   }
-
-  // Updated to the correct API endpoint
-  const PLAYER_COUNT_API = "https://api.gtps.cloud/api/server/50/statistics";
-  const POLL_INTERVAL_MS = 15000;
-
-  const countEl = document.getElementById('playerCount');
-  const dotEl   = document.getElementById('statusDot');
-  const labelEl = document.getElementById('playerLabel');
-
-  async function fetchPlayerCount() {
-    try {
-      const res = await fetch(PLAYER_COUNT_API, { cache: "no-store" });
-      if (!res.ok) throw new Error("Server unreachable");
-      
-      const data = await res.json();
-      
-      // API typically returns keys like 'players' or 'online'
-      const online = data.players || data.online || 0;
-
-      countEl.style.opacity = 0;
-      setTimeout(() => {
-        countEl.textContent = online;
-        labelEl.textContent = online === 1 ? "player online" : "players online";
-        countEl.style.opacity = 1;
-      }, 200);
-
-      dotEl.classList.remove('offline');
-    } catch (err) {
-      console.error("Fetch Error (Likely CORS):", err);
-      countEl.textContent = "!";
-      labelEl.textContent = "offline";
-      dotEl.classList.add('offline');
-    }
-  }
-
-  fetchPlayerCount();
-  setInterval(fetchPlayerCount, POLL_INTERVAL_MS);
 </script>
 
 </body>
