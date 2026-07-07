@@ -1,749 +1,324 @@
 <!DOCTYPE html>
-<html lang="lt">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MVKET - KET Testai B Kategorija Nemokamai</title>
-    
-    <!-- Svetainės ikonėlė (Favicon) -->
-    <link rel="icon" type="image/png" href="MVKET.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XX Private Server — Growtopia</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:        #04070d;
+    --deep:        #071227;
+    --navy:        #0d2246;
+    --steel:       #16407a;
+    --glow:        #6fb2ff;
+    --glow-hot:    #bfe0ff;
+    --ink:         #eaf2ff;
+    --ink-dim:     #93a8c9;
+    --line:        rgba(111,178,255,0.16);
+  }
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap">
-    <style>
-        :root {
-            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            --bg-card: rgba(255, 255, 255, 0.75);
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border: rgba(226, 232, 240, 0.8);
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #fbbf24;
-            --grid-inactive: rgba(241, 245, 249, 0.9);
-            --shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
-            --backdrop: blur(20px);
-            --wave-opacity: 0.6;
-        }
+  *{ margin:0; padding:0; box-sizing:border-box; }
 
-        body.dark-theme {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #020617 100%);
-            --bg-card: rgba(15, 23, 42, 0.65);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: rgba(51, 65, 85, 0.5);
-            --accent: #3b82f6;
-            --accent-hover: #60a5fa;
-            --grid-inactive: rgba(30, 41, 59, 0.6);
-            --shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
-            --wave-opacity: 0.15;
-        }
+  html{ scroll-behavior:smooth; }
 
-        html, body { cursor: none; }
-        button, a, input, select, .grid-item, .option-button { cursor: none !important; }
-        
-        .custom-cursor {
-            width: 10px;
-            height: 10px;
-            background: #fbbf24;
-            border-radius: 50%;
-            position: fixed;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 99999;
-            box-shadow: 0 0 15px 6px rgba(251, 191, 36, 0.7), 0 0 30px 12px rgba(251, 191, 36, 0.4);
-            transition: width 0.2s, height 0.2s, background-color 0.2s, border 0.2s;
-        }
-        .custom-cursor.hover {
-            width: 30px;
-            height: 30px;
-            background: rgba(251, 191, 36, 0.1);
-            border: 2px solid #fbbf24;
-            box-shadow: 0 0 20px 4px rgba(251, 191, 36, 0.5);
-        }
+  body{
+    background:
+      radial-gradient(ellipse 900px 600px at 50% 0%, rgba(30,80,160,0.35), transparent 60%),
+      radial-gradient(ellipse 1200px 800px at 80% 100%, rgba(15,50,110,0.35), transparent 60%),
+      linear-gradient(180deg, var(--void) 0%, var(--deep) 45%, var(--void) 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-        
-        body { 
-            background: var(--bg-gradient); 
-            color: var(--text-main); 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column;
-            overflow-x: hidden;
-            position: relative;
-        }
+  /* ambient crossing light streaks, echoing the mark's diagonals */
+  .streaks{
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+  .streaks span{
+    position: absolute;
+    width: 1px;
+    height: 160%;
+    top: -30%;
+    background: linear-gradient(180deg, transparent, rgba(111,178,255,0.35), transparent);
+    transform-origin: top center;
+    animation: drift 14s ease-in-out infinite;
+  }
+  .streaks span:nth-child(1){ left: 12%; transform: rotate(18deg); animation-delay: 0s; }
+  .streaks span:nth-child(2){ left: 34%; transform: rotate(18deg); animation-delay: -3s; opacity:0.6;}
+  .streaks span:nth-child(3){ left: 68%; transform: rotate(-18deg); animation-delay: -6s; }
+  .streaks span:nth-child(4){ left: 85%; transform: rotate(-18deg); animation-delay: -9s; opacity:0.6;}
+  @keyframes drift{
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.55; }
+  }
 
-        .waves-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 250px;
-            z-index: -1;
-            pointer-events: none;
-        }
+  @media (prefers-reduced-motion: reduce){
+    .streaks span{ animation: none; opacity: 0.25; }
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
 
-        .wave {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 200%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,55.05,16.43,83.1,22.7,143,36.06,204,44,265.48,47.67A417.47,417.47,0,0,0,321.39,56.44Z' fill='%232563eb' opacity='0.4'/%3E%3C/svg%3E") repeat-x;
-            animation: waveMotion 20s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-            transform: translate3d(0, 0, 0);
-            opacity: var(--wave-opacity);
-        }
+  /* ---------- top bar ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px clamp(20px, 5vw, 56px);
+    backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, rgba(4,7,13,0.75), rgba(4,7,13,0));
+  }
 
-        .wave:nth-of-type(2) {
-            bottom: 10px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,55.05,16.43,83.1,22.7,143,36.06,204,44,265.48,47.67A417.47,417.47,0,0,0,321.39,56.44Z' fill='%233b82f6' opacity='0.3'/%3E%3C/svg%3E") repeat-x;
-            animation: waveMotion 13s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite reverse;
-            opacity: var(--wave-opacity);
-        }
+  .brand{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .brand img{ height: 30px; width: 30px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(111,178,255,0.55)); }
+  .brand small{ display:block; font-family:'Rajdhani',sans-serif; font-weight:500; letter-spacing:0.2em; font-size:0.62rem; color: var(--ink-dim); margin-top:2px; }
 
-        .wave:nth-of-type(3) {
-            bottom: 20px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,55.05,16.43,83.1,22.7,143,36.06,204,44,265.48,47.67A417.47,417.47,0,0,0,321.39,56.44Z' fill='%2360a5fa' opacity='0.2'/%3E%3C/svg%3E") repeat-x;
-            animation: waveMotion 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-            opacity: var(--wave-opacity);
-        }
+  .discord-btn{
+    --size: 44px;
+    width: var(--size);
+    height: var(--size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: rgba(13,34,70,0.55);
+    color: var(--glow-hot);
+    text-decoration: none;
+    position: relative;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .discord-btn svg{ width: 20px; height: 20px; fill: currentColor; }
+  .discord-btn:hover{
+    transform: translateY(-2px);
+    border-color: var(--glow);
+    box-shadow: 0 0 22px rgba(111,178,255,0.45);
+  }
+  .discord-btn::after{
+    content: "Join Discord";
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    background: var(--navy);
+    border: 1px solid var(--line);
+    padding: 5px 10px;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .discord-btn:hover::after{ opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        @keyframes waveMotion {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+  /* ---------- hero ---------- */
+  main{ position: relative; z-index: 1; }
 
-        header { 
-            background-color: var(--bg-card); 
-            backdrop-filter: var(--backdrop);
-            -webkit-backdrop-filter: var(--backdrop);
-            border-bottom: 1px solid var(--border); 
-            padding: 18px 24px; 
-            display: flex; 
-            justify-content: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-            box-shadow: var(--shadow); 
-        }
-        .header-content { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 26px; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: -0.5px; transition: transform 0.2s; }
-        .logo:hover { transform: scale(1.03); }
-        
-        .btn-toggle { background: var(--grid-inactive); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-main); font-size: 18px; transition: all 0.2s ease; }
+  .hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(20px, 6vh, 60px) 20px 40px;
+  }
 
-        .main-wrapper { width: 100%; max-width: 1100px; padding: 40px 24px; flex-grow: 1; margin: 0 auto; z-index: 5; }
+  .mark{
+    width: min(340px, 62vw);
+    filter: drop-shadow(0 0 46px rgba(111,178,255,0.35));
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
 
-        .questions-grid { 
-            display: grid; 
-            grid-template-columns: repeat(15, 1fr); 
-            gap: 8px; 
-            margin-bottom: 30px; 
-            background: var(--bg-card); 
-            backdrop-filter: var(--backdrop);
-            -webkit-backdrop-filter: var(--backdrop);
-            padding: 20px; 
-            border-radius: 20px; 
-            border: 1px solid var(--border); 
-            box-shadow: var(--shadow);
-            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        @media (max-width: 768px) { .questions-grid { grid-template-columns: repeat(10, 1fr); } }
-        @media (max-width: 480px) { .questions-grid { grid-template-columns: repeat(5, 1fr); } }
+  .eyebrow{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.42em;
+    color: var(--glow);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
 
-        .grid-item { background-color: var(--grid-inactive); border: 1px solid var(--border); padding: 12px 0; font-weight: 700; font-size: 14px; color: var(--text-muted); border-radius: 10px; text-align: center; transition: all 0.25s ease; }
-        .grid-item:hover { transform: translateY(-2px); background-color: var(--border); color: var(--text-main); }
-        .grid-item.answered { background-color: var(--text-muted); color: var(--bg-card); }
-        .grid-item.current { background-color: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3); }
+  .tagline{
+    max-width: 520px;
+    color: var(--ink-dim);
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
 
-        .quiz-card { 
-            background-color: var(--bg-card); 
-            backdrop-filter: var(--backdrop);
-            -webkit-backdrop-filter: var(--backdrop);
-            border-radius: 28px; 
-            padding: 40px; 
-            display: grid; 
-            grid-template-columns: 1.1fr 1fr; 
-            gap: 40px; 
-            border: 1px solid var(--border); 
-            box-shadow: var(--shadow); 
-            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        @media (max-width: 950px) { .quiz-card { grid-template-columns: 1fr; gap: 30px; } }
+  /* ---------- status / player count ---------- */
+  .status-row{
+    margin-top: 34px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
 
-        .visual-side { 
-            background-color: #1e293b; 
-            border-radius: 20px; 
-            padding: 15px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            border: 3px solid #334155; 
-            min-height: 380px; 
-            box-shadow: inset 0 4px 30px rgba(0,0,0,0.4);
-            overflow: hidden;
-            position: relative;
-        }
-        .visual-side svg { width: 100%; height: auto; max-height: 360px; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3)); }
-        
-        .question-text { font-size: 21px; font-weight: 700; color: var(--text-main); margin-bottom: 25px; line-height: 1.45; }
-        .options-container { display: flex; flex-direction: column; gap: 14px; }
-        
-        .option-button { 
-            background-color: rgba(255,255,255,0.4); 
-            border: 2px solid var(--border); 
-            border-radius: 14px; 
-            padding: 18px 24px; 
-            font-size: 16px; 
-            text-align: left; 
-            font-weight: 600; 
-            color: var(--text-main); 
-            transition: all 0.2s ease; 
-        }
-        body.dark-theme .option-button { background-color: rgba(15, 23, 42, 0.3); }
-        .option-button:hover { border-color: var(--accent); transform: translateX(6px); }
-        .option-button.selected { background-color: var(--accent) !important; border-color: var(--accent); color: white !important; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
+  .pill{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(9,22,46,0.6);
+    backdrop-filter: blur(6px);
+  }
 
-        .action-bar { margin-top: 35px; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-        .btn { padding: 15px 32px; font-size: 16px; font-weight: 700; border-radius: 14px; border: none; transition: all 0.25s ease; }
-        .btn-primary { background-color: var(--accent); color: white; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25); }
-        .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-2px); }
-        .btn-secondary { background-color: var(--grid-inactive); color: var(--text-main); border: 1px solid var(--border); }
-        .btn:disabled { opacity: 0.4; transform: none !important; }
+  .dot{
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #58e39e;
+    box-shadow: 0 0 10px #58e39e;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  .dot.offline{ background:#e35858; box-shadow: 0 0 10px #e35858; animation:none; }
+  @keyframes pulse{
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.8); }
+  }
 
-        .timer { font-size: 18px; font-weight: 800; background: var(--grid-inactive); padding: 10px 22px; border-radius: 12px; color: var(--text-main); border: 1px solid var(--border); }
+  .pill .count{
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--glow-hot);
+    letter-spacing: 0.03em;
+  }
+  .pill .label{
+    font-size: 0.8rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+  }
 
-        .screen-card { 
-            background-color: var(--bg-card); 
-            backdrop-filter: var(--backdrop);
-            border-radius: 28px; 
-            padding: 60px 40px; 
-            text-align: center; 
-            max-width: 800px; 
-            margin: 40px auto; 
-            border: 1px solid var(--border); 
-            box-shadow: var(--shadow); 
-            animation: scaleIn 0.5s ease;
-        }
-        .screen-card h2 { font-size: 34px; font-weight: 800; margin-bottom: 20px; }
-        .screen-card p { color: var(--text-muted); margin-bottom: 40px; line-height: 1.65; }
-        
-        .explanation-box { background-color: rgba(37, 99, 235, 0.07); border-left: 4px solid var(--accent); padding: 18px; margin-top: 18px; border-radius: 0 12px 12px 0; font-size: 15px; line-height: 1.6; color: var(--text-main); text-align: left; }
+  /* ---------- footer ---------- */
+  footer{
+    text-align: center;
+    padding: 40px 20px 30px;
+    color: var(--ink-dim);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    position: relative;
+    z-index: 1;
+  }
+  footer a{ color: var(--glow); text-decoration: none; }
 
-        .hidden { display: none !important; }
-
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
+  @media (max-width: 480px){
+    .brand small{ display:none; }
+  }
+</style>
 </head>
-<body class="dark-theme">
+<body>
 
-    <div class="custom-cursor" id="cursor"></div>
+<div class="streaks" aria-hidden="true">
+  <span></span><span></span><span></span><span></span>
+</div>
 
-    <div class="waves-container">
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
+<header>
+  <div class="brand">
+    <img src="logo.png" alt="XX Private Server mark">
+    <div>
+      XX
+      <small>PRIVATE&nbsp;SERVER</small>
     </div>
+  </div>
 
-    <header>
-        <div class="header-content">
-            <a href="#" class="logo" onclick="location.reload()">MVKET</a>
-            <button class="btn-toggle" onclick="toggleTheme()">🌓</button>
-        </div>
-    </header>
+  <a class="discord-btn" href="https://discord.gg/dQyCBk3TZm" target="_blank" rel="noopener" aria-label="Join our Discord">
+    <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+      <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+    </svg>
+  </a>
+</header>
 
-    <main class="main-wrapper">
-        <div id="start-screen" class="screen-card">
-            <h2>Oficialus KET Teorijos Egzaminas</h2>
-            <p>Testą sudaro 30 laiko limitą turinčių užduočių.</p>
-            <button class="btn btn-primary" style="font-size: 18px; padding: 18px 46px;" onclick="startQuiz()">Pradėti egzaminą</button>
-        </div>
+<main>
+  <section class="hero">
+    <img class="mark" src="logo.png" alt="XX Private Server">
 
-        <div id="quiz-screen" class="hidden">
-            <div id="questions-grid" class="questions-grid"></div>
+    <p class="eyebrow">Growtopia Private Server</p>
+    <p class="tagline">
+      A custom-built world with its own economy, events, and community —
+      running on our own rules.
+    </p>
 
-            <div class="quiz-card">
-                <div class="visual-side">
-                    <div id="q-visual-container" style="width:100%; height:100%; display:flex; justify-content:center; align-items:center;"></div>
-                    <div id="q-placeholder" style="color: var(--text-muted); font-style: italic;" class="hidden">Vizualios situacijos šiam klausimui nėra.</div>
-                </div>
-                <div class="content-side">
-                    <div id="q-text" class="question-text">Kraunama...</div>
-                    <div id="options-block" class="options-container"></div>
-                    
-                    <div class="action-bar">
-                        <button class="btn btn-secondary" id="prev-btn" onclick="goPrev()">Atgal</button>
-                        <div id="timer" class="timer">30:00</div>
-                        <button class="btn btn-primary" id="next-btn" onclick="goNext()">Toliau</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="status-row">
+      <div class="pill">
+        <span id="statusDot" class="dot"></span>
+        <span id="playerCount" class="count">—</span>
+        <span class="label" id="playerLabel">players online</span>
+      </div>
+    </div>
+  </section>
+</main>
 
-        <div id="result-screen" class="screen-card hidden">
-            <div id="result-badge" style="font-size: 30px; font-weight: 800; padding: 16px 32px; border-radius: 16px; margin-bottom: 25px; display: inline-block;"></div>
-            <h3 id="result-percent" style="font-size: 26px; margin-bottom: 35px;">Surinkta: 0%</h3>
-            <button class="btn btn-primary" style="padding: 16px 40px; margin-bottom: 40px;" onclick="startQuiz()">Spręsti dar kartą</button>
-            <div style="text-align: left;">
-                <h3 style="margin-bottom: 25px; border-bottom: 2px solid var(--border); padding-bottom: 12px; font-size: 22px;">Teisinis protokolas ir paaiškinimai:</h3>
-                <div id="review-container"></div>
-            </div>
-        </div>
-    </main>
+<footer>
+  XX PRIVATE SERVER &nbsp;·&nbsp; not affiliated with Growtopia or Ubisoft &nbsp;·&nbsp;
+  <a href="https://discord.gg/dQyCBk3TZm" target="_blank" rel="noopener">discord.gg/dQyCBk3TZm</a>
+</footer>
 
-    <script>
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        document.addEventListener('mouseover', (e) => {
-            if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.classList.contains('grid-item') || e.target.classList.contains('option-button')) {
-                cursor.classList.add('hover');
-            } else {
-                cursor.classList.remove('hover');
-            }
-        });
+<script>
+  /*
+    ── PLAYER COUNT WIRING ──────────────────────────────────────────
+    Point this at an endpoint that returns JSON like: { "online": 42 }
+    See the chat reply for the three ways to get that endpoint set up.
+  */
+  const PLAYER_COUNT_API = "https://example.com/api/players"; // <-- replace me
+  const POLL_INTERVAL_MS = 30000;
 
-        function toggleTheme() { document.body.classList.toggle('dark-theme'); }
+  const countEl = document.getElementById('playerCount');
+  const dotEl   = document.getElementById('statusDot');
+  const labelEl = document.getElementById('playerLabel');
 
-        const advancedIntersections = {
-            lygiareiksme: `
-            <svg viewBox="0 0 400 400" width="100%">
-                <rect x="0" y="0" width="400" height="400" fill="#22c55e" fill-opacity="0.25"/>
-                <rect x="125" y="0" width="150" height="400" fill="#94a3b8"/>
-                <rect x="0" y="125" width="400" height="150" fill="#94a3b8"/>
-                <rect x="130" y="0" width="140" height="400" fill="#334155"/>
-                <rect x="0" y="130" width="400" height="140" fill="#334155"/>
-                <rect x="130" y="130" width="140" height="140" fill="#334155"/>
-                <line x1="130" y1="0" x2="130" y2="130" stroke="#ffffff" stroke-width="2"/>
-                <line x1="270" y1="0" x2="270" y2="130" stroke="#ffffff" stroke-width="2"/>
-                <line x1="130" y1="270" x2="130" y2="400" stroke="#ffffff" stroke-width="2"/>
-                <line x1="270" y1="270" x2="270" y2="400" stroke="#ffffff" stroke-width="2"/>
-                <line x1="200" y1="0" x2="200" y2="110" stroke="#ffffff" stroke-width="3" stroke-dasharray="10,10"/>
-                <line x1="200" y1="290" x2="200" y2="400" stroke="#ffffff" stroke-width="3" stroke-dasharray="10,10"/>
-                <line x1="0" y1="200" x2="110" y2="200" stroke="#ffffff" stroke-width="3" stroke-dasharray="10,10"/>
-                <line x1="290" y1="200" x2="400" y2="200" stroke="#ffffff" stroke-width="3" stroke-dasharray="10,10"/>
-                <g fill="#ffffff" opacity="0.9">
-                    <rect x="135" y="105" width="10" height="20"/><rect x="150" y="105" width="10" height="20"/><rect x="165" y="105" width="10" height="20"/>
-                    <rect x="180" y="105" width="10" height="20"/><rect x="195" y="105" width="10" height="20"/><rect x="210" y="105" width="10" height="20"/>
-                    <rect x="225" y="105" width="10" height="20"/><rect x="240" y="105" width="10" height="20"/><rect x="255" y="105" width="10" height="20"/>
-                </g>
-                <g transform="translate(215, 310)">
-                    <rect x="0" y="0" width="36" height="60" rx="6" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
-                    <rect x="4" y="10" width="28" height="15" fill="#0f172a" rx="2"/>
-                    <rect x="4" y="38" width="28" height="12" fill="#0f172a" rx="2"/>
-                    <circle cx="6" cy="4" r="3" fill="#fef08a"/>
-                    <circle cx="30" cy="4" r="3" fill="#fef08a"/>
-                    <text x="18" y="34" fill="#ffffff" font-weight="800" font-size="16" text-anchor="middle">1</text>
-                </g>
-                <g transform="translate(310, 145)">
-                    <rect x="0" y="0" width="60" height="36" rx="6" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
-                    <rect x="35" y="4" width="15" height="28" fill="#0f172a" rx="2"/>
-                    <rect x="10" y="4" width="12" height="28" fill="#0f172a" rx="2"/>
-                    <circle cx="56" cy="6" r="3" fill="#fef08a"/>
-                    <circle cx="56" cy="30" r="3" fill="#fef08a"/>
-                    <text x="28" y="24" fill="#ffffff" font-weight="800" font-size="16" text-anchor="middle">2</text>
-                </g>
-            </svg>`,
+  async function fetchPlayerCount(){
+    try{
+      const res = await fetch(PLAYER_COUNT_API, { cache: "no-store" });
+      if(!res.ok) throw new Error("bad response");
+      const data = await res.json();
+      const online = data.online ?? data.count ?? data.players;
+      if(typeof online !== "number") throw new Error("no count in response");
 
-            prioriteto: `
-            <svg viewBox="0 0 400 400" width="100%">
-                <rect x="0" y="0" width="400" height="400" fill="#22c55e" fill-opacity="0.25"/>
-                <rect x="125" y="0" width="150" height="400" fill="#94a3b8"/>
-                <rect x="0" y="125" width="400" height="150" fill="#94a3b8"/>
-                <rect x="130" y="0" width="140" height="400" fill="#334155"/>
-                <rect x="0" y="130" width="400" height="140" fill="#334155"/>
-                <rect x="130" y="130" width="140" height="140" fill="#334155"/>
-                <line x1="200" y1="0" x2="200" y2="400" stroke="#ffffff" stroke-width="2" stroke-dasharray="8,8"/>
-                <line x1="0" y1="200" x2="400" y2="200" stroke="#ffffff" stroke-width="2" stroke-dasharray="8,8"/>
-                
-                <g transform="translate(90, 290)">
-                    <rect x="-2" y="-2" width="28" height="28" transform="rotate(45)" fill="#ffffff"/>
-                    <rect x="2" y="2" width="20" height="20" transform="rotate(45)" fill="#eab308"/>
-                </g>
-                <g transform="translate(290, 90)">
-                    <polygon points="0,0 30,0 15,26" fill="#ffffff" stroke="#dc2626" stroke-width="3"/>
-                </g>
+      countEl.textContent = online;
+      labelEl.textContent = online === 1 ? "player online" : "players online";
+      dotEl.classList.remove('offline');
+    }catch(err){
+      countEl.textContent = "?";
+      labelEl.textContent = "count unavailable";
+      dotEl.classList.add('offline');
+    }
+  }
 
-                <g transform="translate(215, 310)">
-                    <rect x="0" y="0" width="36" height="60" rx="6" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
-                    <text x="18" y="35" fill="#ffffff" font-weight="800" font-size="16" text-anchor="middle">1</text>
-                </g>
-                <g transform="translate(310, 145)">
-                    <rect x="0" y="0" width="60" height="36" rx="6" fill="#eab308" stroke="#ca8a04" stroke-width="2"/>
-                    <text x="30" y="24" fill="#ffffff" font-weight="800" font-size="16" text-anchor="middle">2</text>
-                </g>
-            </svg>`,
+  fetchPlayerCount();
+  setInterval(fetchPlayerCount, POLL_INTERVAL_MS);
+</script>
 
-            kairysis: `
-            <svg viewBox="0 0 400 400" width="100%">
-                <rect x="0" y="0" width="400" height="400" fill="#22c55e" fill-opacity="0.25"/>
-                <rect x="125" y="0" width="150" height="400" fill="#94a3b8"/>
-                <rect x="0" y="125" width="400" height="150" fill="#94a3b8"/>
-                <rect x="130" y="0" width="140" height="400" fill="#334155"/>
-                <rect x="0" y="130" width="400" height="140" fill="#334155"/>
-                <line x1="200" y1="0" x2="200" y2="400" stroke="#ffffff" stroke-width="2" stroke-dasharray="6,6"/>
-                <path d="M 230 310 Q 230 180 70 180" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="8,4" stroke-linecap="round"/>
-                
-                <g transform="translate(215, 310)">
-                    <rect x="0" y="0" width="36" height="60" rx="6" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
-                    <text x="18" y="35" fill="#ffffff" font-weight="800" font-size="16" text-anchor="middle">1</text>
-                </g>
-                <g transform="translate(150, 30)">
-                    <rect x="0" y="0" width="36" height="60" rx="6" fill="#10b981" stroke="#047857" stroke-width="2"/>
-                    <text x="18" y="35" fill="#ffffff" font-weight="800" font-size="16" text-anchor="middle">2</text>
-                </g>
-            </svg>`,
-
-            zenklasStop: `
-            <svg viewBox="0 0 100 100" width="130">
-                <polygon points="30,5 70,5 95,30 95,70 70,95 30,95 5,70 5,30" fill="#dc2626" stroke="#ffffff" stroke-width="3"/>
-                <text x="50" y="58" font-family="'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1">STOP</text>
-            </svg>`,
-            
-            zenklasApsisukimas: `
-            <svg viewBox="0 0 100 100" width="130">
-                <rect x="5" y="5" width="90" height="90" rx="6" fill="#1d4ed8" stroke="#ffffff" stroke-width="3"/>
-                <path d="M 50 80 L 50 42 Q 50 22 70 22 Q 82 22 82 37 L 82 45 M 68 40 L 82 54 L 96 40" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>`
-        };
-
-        const questionPool = [
-            { 
-                text: "Kokia tvarka transporto priemonės važiuos per šią nereguliuojamą lygiareikšmių kelių sankryžą?", 
-                svg: advancedIntersections.lygiareiksme, 
-                options: ["Automobilis 1 važiuos pirmas, automobilis 2 - antras", "Automobilis 2 važiuos pirmas, automobilis 1 - antras", "Vairuotojai privalo vadovautis tarpusavio susitarimu"], 
-                correct: 1,
-                explanation: "Pagal KET 154 punktą: Nereguliuojamoje lygiareikšmių kelių sankryžoje vairuotojas privalo duoti kelią iš dešinės artėjančioms transporto priemonėms. Kadangi automobiliui 1 iš dešinės artėja automobilis 2, pirmenybę turi automobilis 2."
-            },
-            { 
-                text: "Kokia eismo dalyvių judėjimo tvarka nurodyta šioje prioriteto ženklais reguliuojamoje sankryžoje?", 
-                svg: advancedIntersections.prioriteto, 
-                options: ["Automobilis 2 pravažiuos pirmas, kadangi jis artėja iš dešinės pusės", "Automobilis 1 pravažiuos pirmas, kadangi jis važiuoja keliu, pažymėtu ženklu Nr. 201 „Pagrindinis kelias“", "Vairuotojai sankryžą kerta abipusiu susitarimu"], 
-                correct: 1,
-                explanation: "Pagal KET 155 punktą: Šalutiniu keliu važiuojantis vairuotojas privalo duoti kelią transporto priemonėms, artėjančioms prie sankryžos pagrindiniu keliu. Prieš automobilį 2 pastatytas ženklas Nr. 203 „Duoti kelią“."
-            },
-            { 
-                text: "Automobilis 1 sankryžoje atlieka posūkio į kairę manevrą, o Automobilis 2 artėja priešpriešine kryptimi tiesiai. Kas turi važiavimo pirmenybę?", 
-                svg: advancedIntersections.kairysis, 
-                options: ["Automobilis 1, kadangi jis pirmasis įvažiavo į važiuojamųjų dalių sankirtą", "Automobilis 2, vadovaujantis priešpriešinio eismo pranašumo taisykle", "Pirmenybė nustatoma pagal abipusį eismo dalyvių mandagumo principą"], 
-                correct: 1,
-                explanation: "Pagal KET 158 punktą: Sukdamas į kairę (apsisukdamas), vairuotojas privalo duoti kelią transporto priemonėms, važiuojančioms priešpriešine kryptimi tiesiai arba į dešinę."
-            },
-            { 
-                text: "Ką eismo dalyviui įsakomąja tvarka nurodo šis kelio ženklas Nr. 204?", 
-                svg: advancedIntersections.zenklasStop, 
-                options: ["Sustoti draudžiama, eismas leidžiamas nesustojus, jeigu kelyje nėra kitų transporto priemonių", "Draudžiama važiuoti nesustojus prieš „Stop“ liniją, o jeigu jos nėra – prieš važiuojamųjų dalių kirtimą", "Nurodo, kad priekyje yra valstybės sienos apsaugos postas"], 
-                correct: 1,
-                explanation: "Pagal KET priedą: Ženklas Nr. 204 „STOP“ draudžia važiuoti nesustojus prieš stop liniją, o eismo dalyvis privalo duoti kelią kertamu keliu važiuojančioms transporto priemonėms."
-            },
-            { 
-                text: "Ką nurodo šis nurodomasis kelio ženklas?", 
-                svg: advancedIntersections.zenklasApsisukimas, 
-                options: ["Ženklas Nr. 515 „Apsisukimo vieta“ nurodo vietą, kurioje leidžiama apsisukti, tačiau posūkis į kairę yra draudžiamas", "Suteikia išimtinę teisę atlikti posūkio į kairę manevrą", "Žymi eismo juostą, skirtą aklavietei apvažiuoti"], 
-                correct: 0,
-                explanation: "Pagal KET taisyklių priedą: Ženklas Nr. 515 „Apsisukimo vieta“ leidžia tik apsisukti. Posūkis į kairę pagal šį kelio ženklą yra teisiškai draudžiamas."
-            },
-            {
-                text: "Koks yra maksimalus leistinas greitis lengviesiems automobiliams automagistralėse nuo balandžio 1 d. iki spalio 31 d.?",
-                svg: null, options: ["110 km/h", "120 km/h", "130 km/h"], correct: 2,
-                explanation: "Pagal KET 135.1 punktą: Nuo balandžio 1 d. iki spalio 31 d. lengviesiems automobiliams automagistralėse leidžiama važiuoti ne didesniu kaip 130 km/h greičiu."
-            },
-            {
-                text: "Ką eismo dalyviams nurodo mirksintis žalias šviesoforo signalas?",
-                svg: null, options: ["Eismas draudžiamas, transporto priemonėms privaloma sustoti", "Leidžia eismą ir įspėja, kad jo laikas baigiasi ir netrukus bus įjungtas draudžiamasis signalas", "Nurodo, kad šviesoforų objektas veikia gedimo režimu"], correct: 1,
-                explanation: "Pagal KET 73.2 punktą: Mirksintis žalias signalas leidžia eismą ir įspėja, kad jo laikas baigiasi ir netrukus bus įjungtas draudžiamasis signalas."
-            },
-            {
-                text: "Kuri eismo dalyviai transporto priemones privalo vairuoti turėdami visišką (0,0 promilių) blaivumą?",
-                svg: null, options: ["Pradedantieji vairuotojai, taksi automobilių, motociklų bei mopedų vairuotojai", "Visi vairuotojai, kurių amžius viršija 50 metų", "Tik asmenys, kurie vykdo tarptautinius krovinių pervežimus"], correct: 0,
-                explanation: "Pagal Lietuvos Respublikos SEAKĮ, pradedantiesiems, motociklų, mopedų, taksi ir komercinio transporto vairuotojams galioja absoliuti 0,0 promilės norma."
-            },
-            {
-                text: "Ar leidžiama lenkti transporto priemones nereguliuojamoje sankryžoje, važiuojant šalutiniu keliu?",
-                svg: null, options: ["Leidžiama, jeigu priešpriešinė eismo juosta yra laisva", "Draudžiama", "Leidžiama tik lenkiant dviračius ir motociklus be priekabos"], correct: 1,
-                explanation: "Pagal KET 141.2 punktą: Lenkti draudžiama nereguliuojamoje sankryžoje, išskyrus pagrindiniame kelyje, pažymėtame atitinkamais kelio ženklais."
-            },
-            {
-                text: "Ką eisme žymi horizontalaus ženklinimo geltona ištisinė linija, nubrėžta prie važiuojamosios dalies krašto?",
-                svg: null, options: ["Žymi vietą, kur draudžiama transporto priemonėms sustoti ir stovėti", "Žymi vietą, kur draudžiama tik stovėti, bet sustoti leidžiama", "Nurodo specialią maršrutinio transporto eismo juostą"], correct: 0,
-                explanation: "Pagal KET priedą (Horiz. ženklinimas 1.4): Geltona ištisinė linija žymi vietą, kur draudžiama transporto priemonėms sustoti ir stovėti."
-            },
-            {
-                text: "Kokį laiko atstumą (sekundėmis) rekomenduojama išlaikyti iki priekyje važiuojančios transporto priemonės gyvenvietėse?",
-                svg: null, options: ["Ne mažesnį kaip 1 sekundės laiko tarpą", "Ne mažesnį kaip 2 sekundžių laiko tarpą", "Ne mažesnį kaip 5 sekundžių laiko tarpą"], correct: 1,
-                explanation: "Pagal KET 127 punktą: Vairuotojas, atsižvelgdamas į greitį, privalo išlaikyti tokį atstumą, kad išvengtų susidūrimo. Rekomenduojamas atstumas sausame kelyje – ne mažiau kaip 2 sekundės."
-            },
-            {
-                text: "Kuriose iš išvardintų vietų transporto priemonėms yra draudžiama apsisukti?",
-                svg: null, options: ["Geležinkelio pervažose, tuneliuose, ant tiltų, estakadų, viadukų ir po jais", "Sankryžose, kuriose įrengtas šviesoforinis reguliavimas", "Keliuose, kurie turi tik po vieną eismo juostą kiekviena kryptimi"], correct: 0,
-                explanation: "Pagal KET 94 punktą: Apsisukti draudžiama geležinkelio pervažose, tuneliuose, ant tiltų, viadukų, estakadų ir po jais, taip pat rimto matomumo vietose."
-            },
-            {
-                text: "Kas turi pirmenybę, kai maršrutinis transportas gyvenvietėje pradeda važiuoti iš pažymėtos stotelės?",
-                svg: null, options: ["Kiti vairuotojai privalo duoti kelią maršrutiniam transportui", "Maršrutinio transporto vairuotojas privalo praleisti visas tiesiai važiuojančias TP", "Eismas vyksta vadovaujantis lygiareikšmio išvažiavimo principu"], correct: 0,
-                explanation: "Pagal KET 181 punktą: Gyvenvietėse vairuotojai privalo duoti kelią maršrutiniam transportui, pradedančiam važiuoti iš pažymėtos stotelės."
-            },
-            {
-                text: "Kokiu maksimaliu greičiu leidžiama vilkti motorinę transporto priemonę standžia ar lanksčia jungtimi?",
-                svg: null, options: ["Ne didesniu kaip 50 km/h greičiu", "Ne didesniu kaip 70 km/h greičiu", "Greitis neribojamas, jeigu jungtis yra standi"], correct: 0,
-                explanation: "Pagal KET 140 punktą: Vilkti transporto priemones motorine transporto priemone leidžiama ne didesniu kaip 50 km/h greičiu."
-            },
-            {
-                text: "Ar privaloma prisegti saugos diržus keleiviams, sėdintiems transporto priemonės galinėse sėdynėse?",
-                svg: null, options: ["Privaloma visais atvejais, jeigu transporto priemonėje yra įrengti saugos diržai", "Neprivaloma, jeigu automobilis važiuoja gyvenvietėje", "Neprivaloma pilnamečiams keleiviams"], correct: 0,
-                explanation: "Pagal KET 196 punktą: Važiuodami transporto priemone su įrengtais saugos diržais, vairuotojas ir keleiviai privalo būti juos prisisegę."
-            },
-            {
-                text: "Ką eismo dalyviams nurodo reguliuotojo vertikaliai į viršų iškelta ranka?",
-                svg: null, options: ["Eismas leidžiamas visomis kryptimis", "Visiems eismo dalyviams draudžiama judėti; privaloma sustoti", "Sustoti privalo tik pėstieji"], correct: 1,
-                explanation: "Pagal KET 77.1 punktą: Vertikaliai aukštyn iškelta ranka reiškia signalą, kuris draudžia judėti visiems eismo dalyviams."
-            },
-            {
-                text: "Kokiu atstumu iki pavojingo ruožo pradžios gyvenvietėse statomi įspėjamieji kelio ženklai?",
-                svg: null, options: ["10-30 metrų atstumu", "50-100 metrų atstumu", "150-300 metrų atstumu"], correct: 1,
-                explanation: "Pagal KET priedą: Gyvenvietėse įspėjamieji kelio ženklai statomi likus 50-100 metrų iki pavojingo kelio ruožo pradžios."
-            },
-            {
-                text: "Kokiu atstumu iki pavojingo ruožo pradžios ne gyvenvietėse statomi įspėjamieji kelio ženklai?",
-                svg: null, options: ["50-100 metrų atstumu", "150-300 metrų atstumu", "400-600 metrų atstumu"], correct: 1,
-                explanation: "Pagal KET priedą: Ne gyvenvietėse įspėjamieji kelio ženklai statomi likus 150-300 metrų iki pavojingo kelio ruožo pradžios."
-            },
-            {
-                text: "Kokiu minimaliu atstumu iki priešpriešiais artėjančios transporto priemonės naktį tolimosios šviesos turi būti perjungtos į artimąsias?",
-                svg: null, options: ["Likus ne mažiau kaip 50 metrų", "Likus ne mažiau kaip 150 metrų", "Likus ne mažiau kaip 300 metrų"], correct: 1,
-                explanation: "Pagal KET 99.1 punktą: Tolimosios šviesos turi būti perjungtos į artimąsias likus ne mažiau kaip 150 metrų iki artėjančios transporto priemonės."
-            },
-            {
-                text: "Kokiu minimaliu atstumu prieš pėsčiųjų perėją transporto priemonėms leidžiama sustoti ar stovėti?",
-                svg: null, options: ["Ne arčiau kaip 5 metrų atstumu prieš pėsčiųjų perėją", "Ne arčiau kaip 10 metrų atstumu prieš pėsčiųjų perėją", "Sustojimo atstumas prieš perėją nėra reglamentuojamas"], correct: 0,
-                explanation: "Pagal KET 150.4 punktą: Draudžiama sustoti ir stovėti pėsčiųjų perėjose ir arčiau kaip 5 metrai prieš jas."
-            },
-            {
-                text: "Ką privalo daryti vairuotojas, pamatęs artėjančią transporto priemonę su įjungtais mėlynais ir raudonais švyturėliais bei specialiaisiais garsiniais signalais?",
-                svg: null, options: ["Padidinti greitį ir kuo skubiau atlaisvinti eismo juostą", "Sustoti dešiniajame kelkraštyje, o jeigu jo nėra – prie važiuojamosios dalies krašto", "Tęsti judėjimą nekeičiant krypties ir važiavimo greičio"], correct: 1,
-                explanation: "Pagal KET 12 punktą: Vairuotojai privalo duoti kelią transporto priemonėms su įjungtais mėlynais ir raudonais švyturėliais, sustodami dešinėje kelio pusėje."
-            },
-            {
-                text: "Ką eisme žymi horizontalaus ženklinimo balta ištisinė ženklinimo linija?",
-                svg: null, options: ["Nurodo vietą, kur vairuotojas privalo atlikti posūkį", "Skiria priešingų krypčių eismo srautus arba žymi eismo juostos kraštus; ją kirsti draudžiama", "Ji skirta tik pėsčiųjų judėjimo zonai išskirti"], correct: 1,
-                explanation: "Pagal KET priedą (Horiz. ženklinimas 1.1): Baltą ištisinę liniją kirsti draudžiama. Ji skiria priešingų krypčių transporto srautus."
-            },
-            {
-                text: "Ar leidžiama transporto priemonėms važiuoti atbulomis automagistralėse ar greitkeliuose?",
-                svg: null, options: ["Draudžiama", "Leidžiama, jeigu nėra sukeliama kliūtis kitam eismui", "Leidžiama tik kietą dangą turinčiu kelkraščiu"], correct: 0,
-                explanation: "Pagal KET 170.3 punktą: Automagistralėse ir greitkeliuose transporto priemonėms suktis atgal arba važiuoti atbulomis yra griežtai draudžiama."
-            },
-            {
-                text: "Nuo kokio amžiaus asmuo gali įgyti teisę vairuoti B kategorijos transporto priemones (laikyti praktinį egzaminą VĮ Regitra)?",
-                svg: null, options: ["Nuo 16 metų", "Nuo 17 metų", "Nuo 18 metų"], correct: 2,
-                explanation: "Pagal LR SEAKĮ: Teisė vairuoti B kategorijos transporto priemones (lengvuosius automobilius) suteikiama asmenims nuo 18 metų."
-            },
-            {
-                text: "Kaip privalo pasielgti vairuotojas, jeigu tamsiu paros metu jį akina priešpriešiais važiuojančios transporto priemonės tolimosios šviesos?",
-                svg: null, options: ["Įjungti savo transporto priemonės tolimąsias šviesas", "Įjungti avarinę šviesos signalizaciją, nesikeičiant eismo juostos sumažinti greitį ir, prireikus, sustoti", "Nukreipti transporto priemonę link artimiausio dešiniojo kelkraščio stabdant"], correct: 1,
-                explanation: "Pagal KET 101 punktą: Akis akinant vairuotojas privalo įjungti avarinę šviesos signalizaciją, lėtinti greitį nekeičiant juostos ir prireikus sustoti."
-            },
-            {
-                text: "Kas laikoma „Sustojimu“ pagal Lietuvos Respublikos KET?",
-                svg: null, options: ["Transporto priemonės sustabdymas ne ilgesniam laikui, nei reikia keleiviams įlaipinti (išlaipinti) arba kroviniui krauti (iki 5 min.)", "Bet koks automobilio stovėjimas be vairuotojo ilgiau nei 15 minučių", "Transporto priemonės variklio išjungimas nakties metu stovėjimo aikštelėje"], correct: 0,
-                explanation: "Pagal KET 3 punktą: Sustojimas – transporto priemonės sustabdymas ne ilgesniam laikui, nei reikia keleiviams įlaipinti (išlaipinti) arba transporto priemonei krauti."
-            },
-            {
-                text: "Ar leidžiama lenkti transporto priemonę, kuri pati tuo metu lenkia kitą priekyje važiuojantį objektą (dvigubas lenkimas)?",
-                svg: null, options: ["Leidžiama, jeigu kelio matomumas yra visiškai pakankamas", "Draudžiama", "Leidžiama tik šviesiu paros metu už gyvenvietės ribų"], correct: 1,
-                explanation: "Pagal KET 141.1 punktą: Vairuotojui draudžiama lenkti transporto priemonę, kuri pati lenkia, apsisuka arba suka į kairę."
-            },
-            {
-                text: "Kokiu minimaliu atstumu iki geležinkelio pervažos pradedamas taikyti draudimas lenkti kitas transporto priemones?",
-                svg: null, options: ["Likus mažiau kaip 50 metrų atstumu", "Likus mažiau kaip 100 metrų atstumu", "Lenkti draudžiama tik pačios geležinkelio pervažos ribose"], correct: 1,
-                explanation: "Pagal KET 141.4 punktą: Lenkti transporto priemones draudžiama geležinkelio pervažose ir likus mažiau kaip 100 metrų atstumu iki jų."
-            },
-            {
-                text: "Ką reiškia prie raudono šviesoforo signalo pritvirtinta lentelė su žalia rodykle, nukreipta į dešinę?",
-                svg: null, options: ["Suteikia važiavimo pirmenybę sukti į dešinę neatliekant sustojimo", "Leidžia vairuotojams sukti į dešinę ir degant draudžiamam šviesoforo signalui, tačiau privaloma duoti kelią kitiems eismo dalyviams", "Ši rodyklė galioja išskirtinai tik maršrutiniam transportui"], correct: 1,
-                explanation: "Pagal KET 76 punktą: Lentelė su žalia rodykle leidžia sukti į dešinę degant raudonam signalui, tačiau vairuotojas privalo užtikrinti saugumą ir praleisti kitus eismo dalyvius."
-            },
-            {
-                text: "Ar privaloma rodyti įspėjamąjį posūkio signalą įvažiuojant į žiedinę sankryžą?",
-                svg: null, options: ["Privaloma įjungti dešiniojo posūkio signalą", "Privaloma įjungti kairiojo posūkio signalą", "Įvažiuojant į žiedinę sankryžą posūkio signalas nerodomas, jis privalomai rodomas tik išvažiuojant iš jos"], correct: 2,
-                explanation: "Pagal KET 91-93 punktus: Įvažiuojant į žiedinę sankryžą eismas vyksta ratu, kryptis nesikeičia, todėl posūkio rodyti nereikia. Signalas rodomas tik persirikiuojant žiede arba išvažiuojant iš jo."
-            }
-        ];
-
-        function fisherYatesShuffle(array) {
-            let currentIndex = array.length, randomIndex;
-            while (currentIndex != 0) {
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-            }
-            return array;
-        }
-
-        const TOTAL_QUESTIONS = 30;
-        let currentQuestions = [];
-        let currentQuestionIndex = 0;
-        let userAnswers = new Array(TOTAL_QUESTIONS).fill(null);
-        let examTimer = null;
-        let timeLeft = 40 * 60;
-
-        function startQuiz() {
-            currentQuestions = fisherYatesShuffle([...questionPool]).slice(0, TOTAL_QUESTIONS);
-            currentQuestionIndex = 0;
-            userAnswers = new Array(TOTAL_QUESTIONS).fill(null);
-            timeLeft = 40 * 60;
-
-            document.getElementById('start-screen').classList.add('hidden');
-            document.getElementById('result-screen').classList.add('hidden');
-            document.getElementById('quiz-screen').classList.remove('hidden');
-
-            buildGrid();
-            showQuestion(0);
-            startTimer();
-        }
-
-        function buildGrid() {
-            const grid = document.getElementById('questions-grid');
-            grid.innerHTML = '';
-            for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-                const item = document.createElement('div');
-                item.className = 'grid-item';
-                item.innerText = i + 1;
-                item.id = `grid-item-${i}`;
-                item.onclick = () => showQuestion(i);
-                grid.appendChild(item);
-            }
-        }
-
-        function showQuestion(index) {
-            document.querySelectorAll('.grid-item').forEach((el, idx) => {
-                el.classList.remove('current');
-                if (userAnswers[idx] !== null) el.classList.add('answered');
-                else el.classList.remove('answered');
-            });
-            
-            currentQuestionIndex = index;
-            const qItem = document.getElementById(`grid-item-${index}`);
-            if (qItem) qItem.classList.add('current');
-
-            const qData = currentQuestions[index];
-            document.getElementById('q-text').innerText = qData.text;
-
-            const visualContainer = document.getElementById('q-visual-container');
-            const placeholder = document.getElementById('q-placeholder');
-            
-            if (qData.svg) {
-                visualContainer.innerHTML = qData.svg;
-                placeholder.classList.add('hidden');
-                visualContainer.classList.remove('hidden');
-            } else {
-                visualContainer.innerHTML = '';
-                visualContainer.classList.add('hidden');
-                placeholder.classList.remove('hidden');
-            }
-
-            const optionsBlock = document.getElementById('options-block');
-            optionsBlock.innerHTML = '';
-            
-            qData.options.forEach((opt, oIdx) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-button';
-                if (userAnswers[index] === oIdx) btn.classList.add('selected');
-                btn.innerText = opt;
-                btn.onclick = () => selectOption(oIdx);
-                optionsBlock.appendChild(btn);
-            });
-            
-            document.getElementById('prev-btn').disabled = (index === 0);
-            const nextBtn = document.getElementById('next-btn');
-            if (index === TOTAL_QUESTIONS - 1) {
-                nextBtn.innerText = "Baigti egzaminą";
-                nextBtn.style.backgroundColor = 'var(--success)';
-            } else {
-                nextBtn.innerText = "Toliau";
-                nextBtn.style.backgroundColor = '';
-            }
-        }
-
-        function selectOption(optIndex) {
-            userAnswers[currentQuestionIndex] = optIndex;
-            const currentGridItem = document.getElementById(`grid-item-${currentQuestionIndex}`);
-            if (currentGridItem) currentGridItem.classList.add('answered');
-            
-            document.querySelectorAll('.option-button').forEach((btn, idx) => {
-                if (idx === optIndex) btn.classList.add('selected');
-                else btn.classList.remove('selected');
-            });
-        }
-
-        function goPrev() { if (currentQuestionIndex > 0) showQuestion(currentQuestionIndex - 1); }
-        function goNext() {
-            if (currentQuestionIndex < TOTAL_QUESTIONS - 1) showQuestion(currentQuestionIndex + 1);
-            else finishExam();
-        }
-
-        function startTimer() {
-            if (examTimer) clearInterval(examTimer);
-            examTimer = setInterval(() => {
-                timeLeft--;
-                if (timeLeft <= 0) { clearInterval(examTimer); finishExam(); }
-                else {
-                    const mins = Math.floor(timeLeft / 60);
-                    const secs = timeLeft % 60;
-                    document.getElementById('timer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-                }
-            }, 1000);
-        }
-
-        function finishExam() {
-            clearInterval(examTimer);
-            document.getElementById('quiz-screen').classList.add('hidden');
-            document.getElementById('result-screen').classList.remove('hidden');
-
-            let correctCount = 0;
-            const reviewContainer = document.getElementById('review-container');
-            reviewContainer.innerHTML = '';
-
-            currentQuestions.forEach((q, idx) => {
-                const uAns = userAnswers[idx];
-                const isCorrect = (uAns === q.correct);
-                if (isCorrect) correctCount++;
-
-                const itemReview = document.createElement('div');
-                itemReview.style.marginBottom = '25px';
-                itemReview.style.padding = '20px';
-                itemReview.style.borderRadius = '16px';
-                itemReview.style.backgroundColor = isCorrect ? 'rgba(16, 185, 129, 0.08)' : 'rgba(239, 68, 68, 0.08)';
-                itemReview.style.borderLeft = `5px solid ${isCorrect ? 'var(--success)' : 'var(--danger)'}`;
-
-                const userText = uAns !== null ? q.options[uAns] : 'Atsakymas nepasirinktas';
-                const correctText = q.options[q.correct];
-
-                itemReview.innerHTML = `
-                    <h4 style="margin-bottom: 8px; font-size: 16px;">${idx + 1}. ${q.text}</h4>
-                    <p style="font-size: 14px; margin-bottom: 4px;">Jūsų atsakymas: <strong style="color: ${isCorrect ? 'var(--success)' : 'var(--danger)'};">${userText}</strong></p>
-                    ${!isCorrect ? `<p style="font-size: 14px; margin-bottom: 8px;">Teisingas atsakymas: <strong style="color: var(--success);">${correctText}</strong></p>` : ''}
-                    <div class="explanation-box">${q.explanation}</div>
-                `;
-                reviewContainer.appendChild(itemReview);
-            });
-
-            const percent = Math.round((correctCount / TOTAL_QUESTIONS) * 100);
-            const passed = percent >= 80;
-
-            const badge = document.getElementById('result-badge');
-            badge.innerText = passed ? "EGZAMINAS IŠLAIKYTAS" : "EGZAMINAS NEIŠLAIKYTAS";
-            badge.style.backgroundColor = passed ? 'var(--success)' : 'var(--danger)';
-            badge.style.color = '#fff';
-
-            document.getElementById('result-percent').innerText = `Teisingai atsakyta: ${correctCount} iš ${TOTAL_QUESTIONS} klausimų (${percent}%)`;
-        }
-    </script>
 </body>
 </html>
