@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XX Private Server — Growtopia</title>
+<title>XX Private Server</title>
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,6 @@
     position: relative;
   }
 
-  /* ambient crossing light streaks */
   .streaks {
     position: fixed;
     inset: 0;
@@ -65,7 +64,6 @@
     50% { opacity: 0.55; }
   }
 
-  /* ---------- top bar ---------- */
   header {
     position: sticky;
     top: 0;
@@ -113,7 +111,6 @@
     box-shadow: 0 0 22px rgba(111,178,255,0.45);
   }
 
-  /* ---------- hero ---------- */
   main { position: relative; z-index: 1; }
 
   .hero {
@@ -121,14 +118,21 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: clamp(20px, 6vh, 60px) 20px 40px;
+    padding: clamp(20px, 10vh, 80px) 20px 40px;
   }
 
-  .mark {
-    width: min(340px, 62vw);
+  .mark-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(4rem, 12vw, 7.5rem);
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: 0.05em;
     filter: drop-shadow(0 0 46px rgba(111,178,255,0.35));
     animation: float 6s ease-in-out infinite;
+    line-height: 1;
+    margin-bottom: 8px;
   }
+
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
@@ -136,11 +140,11 @@
 
   .eyebrow {
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.42em;
+    font-size: 0.8rem;
+    letter-spacing: 0.45em;
     color: var(--glow);
     text-transform: uppercase;
-    margin-top: 8px;
+    margin-top: 10px;
   }
 
   .tagline {
@@ -148,13 +152,12 @@
     color: var(--ink-dim);
     font-weight: 500;
     font-size: 1.05rem;
-    margin-top: 14px;
+    margin-top: 20px;
     line-height: 1.6;
   }
 
-  /* ---------- status / actions ---------- */
   .action-row {
-    margin-top: 34px;
+    margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
@@ -203,7 +206,6 @@
   }
   .pill .label { font-size: 0.8rem; color: var(--ink-dim); letter-spacing: 0.04em; }
 
-  /* "How to Play" Button */
   .play-btn {
     display: flex;
     align-items: center;
@@ -230,7 +232,6 @@
   }
   .play-btn svg { width: 22px; height: 22px; fill: currentColor; }
 
-  /* ---------- Modal (How to Play) ---------- */
   .modal-overlay {
     position: fixed;
     inset: 0;
@@ -321,7 +322,6 @@
   }
   .device-btn:hover svg { transform: scale(1.1); color: var(--glow-hot); }
 
-  /* Windows Hosts Section */
   .windows-hosts-wrapper {
     max-height: 0;
     overflow: hidden;
@@ -351,18 +351,10 @@
     white-space: pre-wrap;
     user-select: all;
   }
-  
-  /* ---------- footer ---------- */
+
   footer {
-    text-align: center;
-    padding: 40px 20px 30px;
-    color: var(--ink-dim);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    position: relative;
-    z-index: 1;
+    padding: 40px;
   }
-  footer a { color: var(--glow); text-decoration: none; }
 
   @media (max-width: 480px){
     .brand small{ display:none; }
@@ -378,7 +370,7 @@
 
 <header>
   <div class="brand">
-    <img src="logo.png" alt="XX Private Server mark">
+    <img src="logo.png" alt="Server mark">
     <div>
       XX
       <small>PRIVATE&nbsp;SERVER</small>
@@ -394,9 +386,9 @@
 
 <main>
   <section class="hero">
-    <img class="mark" src="logo.png" alt="XX Private Server">
-
-    <p class="eyebrow">Growtopia Private Server</p>
+    <h1 class="mark-text">XX</h1>
+    <p class="eyebrow">PRIVATE SERVER</p>
+    
     <p class="tagline">
       A custom-built world with its own economy, events, and community —
       running on our own rules.
@@ -454,17 +446,12 @@
 91.134.85.13 www.growtopia2.com</div>
       </div>
     </div>
-
   </div>
 </div>
 
-<footer>
-  XX PRIVATE SERVER &nbsp;·&nbsp; not affiliated with Growtopia or Ubisoft &nbsp;·&nbsp;
-  <a href="https://discord.gg/dQyCBk3TZm" target="_blank" rel="noopener">discord.gg/dQyCBk3TZm</a>
-</footer>
+<footer></footer>
 
 <script>
-  // ── MODAL LOGIC ───────────────────────────────────────────────
   const modal = document.getElementById('playModal');
   const hostsWrapper = document.getElementById('windowsHosts');
 
@@ -475,7 +462,6 @@
   function closeModal(e) {
     if (e) e.preventDefault();
     modal.classList.remove('active');
-    // Reset hosts view when closing
     setTimeout(() => { hostsWrapper.classList.remove('active'); }, 400);
   }
 
@@ -483,8 +469,7 @@
     hostsWrapper.classList.toggle('active');
   }
 
-  // ── PLAYER COUNT WIRING ────────────────────────────────────────
-  const PLAYER_COUNT_API = "https://your-server.gtps.cloud/api/data.json"; // <-- replace me
+  const PLAYER_COUNT_API = "https://your-server.gtps.cloud/api/data.json";
   const POLL_INTERVAL_MS = 15000;
 
   const countEl = document.getElementById('playerCount');
@@ -499,7 +484,6 @@
       const data = await res.json();
       const online = data.online || 0;
 
-      // Smoothly update the number
       countEl.style.opacity = 0;
       setTimeout(() => {
         countEl.textContent = online;
@@ -509,7 +493,6 @@
 
       dotEl.classList.remove('offline');
     } catch (err) {
-      console.error("Fetch error:", err);
       countEl.textContent = "!";
       labelEl.textContent = "offline";
       dotEl.classList.add('offline');
